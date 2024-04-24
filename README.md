@@ -1,0 +1,1 @@
+The aim of the project is to develop an application that allows users to choose and buy used cars, followed by adding functionality for their sale. The application will provide the opportunity to filter cars on various criteria.
