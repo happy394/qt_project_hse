@@ -9,14 +9,22 @@
 #include <QStringList>
 #include <QSet>
 
+
 class offersList
 {
 public:
     QList<QList<QString>> list; // vector
     QStringList stringList; // vector of string
-    // QSet <QString> genres;
-    offersList();
 
+    // dropdown filters
+    QSet <QString> brandSet;
+    QSet <QString> modelSet;
+    QSet <QString> countrySet;
+    QStringList brand;
+    QStringList model;
+    QStringList country;
+
+    offersList();
 };
 
 #endif // OFFERSLIST_H

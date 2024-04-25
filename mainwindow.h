@@ -24,5 +24,8 @@ private:
     Ui::MainWindow *ui;
     QStringListModel *list;
     offersList *offerslist; // offers of used cars
+    QStringListModel *brand;
+    QStringListModel *model;
+    QStringListModel *country;
 };
 #endif // MAINWINDOW_H

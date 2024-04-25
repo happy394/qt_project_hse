@@ -123,13 +123,17 @@
      </property>
      <layout class="QHBoxLayout" name="DropdownFilters">
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="BrandFilter">
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_2"/>
+       <widget class="QComboBox" name="ModelFilter"/>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_3"/>
+       <widget class="QComboBox" name="CountryFilter"/>
       </item>
      </layout>
     </widget>
@@ -138,7 +142,7 @@
       <rect>
        <x>40</x>
        <y>100</y>
-       <width>361</width>
+       <width>808</width>
        <height>41</height>
       </rect>
      </property>
