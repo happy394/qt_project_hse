@@ -13,10 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // dropdown filters
     brand->setStringList(offerslist->brand);
-    model->setStringList(offerslist->model);
     country->setStringList(offerslist->country);
     ui->BrandFilter->setModel(brand);
-    ui->ModelFilter->setModel(model);
     ui->CountryFilter->setModel(country);
 }
 
@@ -24,4 +22,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete list;
+}
+
+void MainWindow::on_BrandFilter_textActivated(const QString &arg1)
+{
+    model->setStringList(offerslist->getModel(arg1));
+    ui->ModelFilter->setModel(model);
 }

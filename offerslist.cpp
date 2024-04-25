@@ -1,4 +1,5 @@
 #include "offerslist.h"
+#include "car.h"
 
 offersList::offersList()
 {
@@ -13,16 +14,25 @@ offersList::offersList()
         s = ss.readLine();
         buff = s.split(",");
         this->list.append(buff);
-        this->stringList << buff[0] + ".   " + buff[1] + "   " + buff[2] + "   " + buff[3];
-        this->brandSet.insert(buff[1]);
-        this->modelSet.insert(buff[2]);
-        this->countrySet.insert(buff[9]);
+        car currCar = car(buff[0], buff[1], buff[2], buff[3], buff[4], buff[5], buff[6], buff[7], buff[8], buff[9], buff[10], buff[11], buff[12]);
+
+        this->stringList << currCar.id + ".   " + currCar.brand + "   " + currCar.model + "   " + currCar.price;
+        this->brandSet.insert(currCar.brand);
+        if (!modelMap.contains(currCar.brand))
+            modelMap.insert(currCar.brand, {currCar.model});
+        else
+            this->modelMap[currCar.brand].insert(currCar.model);
+        this->countrySet.insert(currCar.country);
     }
 
     // vars for adding items to comboBox (dropdown filters)
     brand = brandSet.values();
-    model = modelSet.values();
     country = countrySet.values();
 
     file.close();
+}
+
+QStringList offersList::getModel(const QString& branda)
+{
+    return modelMap[branda].values();
 }

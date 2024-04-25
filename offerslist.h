@@ -9,7 +9,6 @@
 #include <QStringList>
 #include <QSet>
 
-
 class offersList
 {
 public:
@@ -18,11 +17,13 @@ public:
 
     // dropdown filters
     QSet <QString> brandSet;
-    QSet <QString> modelSet;
+    QMap <QString, QSet <QString>> modelMap;
     QSet <QString> countrySet;
     QStringList brand;
     QStringList model;
     QStringList country;
+
+    QStringList getModel(const QString& branda);
 
     offersList();
 };
