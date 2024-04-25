@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include <QStringListModel>
+#include "offerslist.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -19,5 +22,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QStringListModel *list;
+    offersList *offerslist; // offers of used cars
 };
 #endif // MAINWINDOW_H

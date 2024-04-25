@@ -41,7 +41,11 @@
       </spacer>
      </item>
      <item>
-      <widget class="QListView" name="OffersList"/>
+      <widget class="QListView" name="OffersList">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="RightSpacer">
@@ -108,7 +112,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -129,13 +133,13 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>90</y>
-       <width>421</width>
-       <height>51</height>
+       <x>40</x>
+       <y>100</y>
+       <width>361</width>
+       <height>41</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="BoundaryFilters">
@@ -297,7 +301,7 @@
     <widget class="QLabel" name="PriceLabel">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>80</x>
        <y>70</y>
        <width>58</width>
        <height>16</height>
@@ -323,7 +327,7 @@
     <widget class="QLabel" name="AgeLabel">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>330</x>
        <y>70</y>
        <width>58</width>
        <height>16</height>
