@@ -29,3 +29,18 @@ void MainWindow::on_BrandFilter_textActivated(const QString &arg1)
     model->setStringList(offerslist->getModel(arg1));
     ui->ModelFilter->setModel(model);
 }
+
+void MainWindow::on_CountryFilter_textActivated(const QString &arg1)
+{
+    QStringList car = offerslist->getModel(arg1);
+    brand->setStringList(car);
+    ui->BrandFilter->setModel(brand);
+    if (car.length() == 1)
+    {
+        model->setStringList(offerslist->getModel(car[0]));
+        ui->ModelFilter->setModel(model);
+    }
+    else
+        ui->ModelFilter->clear();
+}
+

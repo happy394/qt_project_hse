@@ -22,6 +22,10 @@ offersList::offersList()
             modelMap.insert(currCar.brand, {currCar.model});
         else
             this->modelMap[currCar.brand].insert(currCar.model);
+        if (!modelMap.contains(currCar.country))
+            modelMap.insert(currCar.country, {currCar.brand});
+        else
+            this->modelMap[currCar.country].insert(currCar.brand);
         this->countrySet.insert(currCar.country);
     }
 
@@ -32,7 +36,7 @@ offersList::offersList()
     file.close();
 }
 
-QStringList offersList::getModel(const QString& branda)
+QStringList offersList::getModel(const QString& key)
 {
-    return modelMap[branda].values();
+    return modelMap[key].values();
 }

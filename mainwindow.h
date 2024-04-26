@@ -23,6 +23,8 @@ public:
 private slots:
     void on_BrandFilter_textActivated(const QString &arg1);
 
+    void on_CountryFilter_textActivated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *list;

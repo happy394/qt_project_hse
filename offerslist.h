@@ -23,6 +23,7 @@ public:
     QStringList model;
     QStringList country;
 
+    // returns all models for a given brand
     QStringList getModel(const QString& branda);
 
     offersList();
