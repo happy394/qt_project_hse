@@ -3,7 +3,7 @@
 
 offersList::offersList()
 {
-    qInfo() << qApp->applicationDirPath();
+    // qInfo() << qApp->applicationDirPath();
     QFile file("../../../../qt_project_hse/data/car_data.csv");
     file.open(QFile::ReadOnly | QFile::Text);
     QTextStream ss(&file);

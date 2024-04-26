@@ -45,22 +45,27 @@ void MainWindow::on_BrandFilter_textActivated(const QString &arg1)
     ui->OffersList->setModel(list);
 }
 
+// issue on duplicates is here!!!
 void MainWindow::on_CountryFilter_textActivated(const QString &arg1)
 {
     if (arg1 != "None") {
         QList<car> cars = offerslist->getModel(arg1);
         QStringList carsBrands;
         for (const auto &i : cars) {
-            carsBrands.append(i.brand);
+            if (!carsBrands.contains(i.brand))
+                carsBrands.append(i.brand);
         }
-
         brand->setStringList(carsBrands);
         ui->BrandFilter->setModel(brand);
         if (carsBrands.length() == 1) {
             model->setStringList({cars[0].brand});
             ui->ModelFilter->setModel(model);
-        } else
+        }
+        else
+        {
             ui->ModelFilter->clear();
+            // ui->OffersList->;
+        }
     }
 
     // returns BrandFilter to initial state
