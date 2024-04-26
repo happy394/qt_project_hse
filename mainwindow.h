@@ -27,6 +27,8 @@ private slots:
 
     void on_ModelFilter_textActivated(const QString &arg1);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *list;

@@ -28,43 +28,78 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete list;
+    delete brand;
+    delete country;
+    delete model;
 }
 
-void MainWindow::on_BrandFilter_textActivated(const QString &arg1)
+void MainWindow::on_BrandFilter_textActivated(const QString &currBrand)
 {
-    QList<car> cars = offerslist->getModel(arg1);
-    QStringList carsModels = {"None"};
-    QString carsBrand = cars[0].brand;
-    for (const auto &i : cars) {
-        if (!carsModels.contains(i.model))
-            carsModels.append(i.model);
+    if (currBrand != "")
+    {
+        // making list of models
+        QSet<QString> carsModelsSet;
+        for (const auto &i : offerslist->getModel(currBrand))
+            carsModelsSet.insert(i.model);
+
+        // sorting list of models
+        // "" is an empty element. I think it is needed to show that nothing was chosen
+        QStringList carsModels = {""};
+        carsModels += carsModelsSet.values();
+        std::sort(carsModels.begin()+1, carsModels.end());
+
+        // placing models in filter
+        model->setStringList(carsModels);
+        ui->ModelFilter->setModel(model);
+
+        // changing offers list
+        list->setStringList(stringlist->filter(currBrand));
+        ui->OffersList->setModel(list);
     }
-    model->setStringList(carsModels);
-    ui->ModelFilter->setModel(model);
-    list->setStringList(stringlist->filter(carsBrand));
-    ui->OffersList->setModel(list);
+    else
+        ui->ModelFilter->clear();
 }
 
-// issue on duplicates is here!!!
-void MainWindow::on_CountryFilter_textActivated(const QString &arg1)
+void MainWindow::on_ModelFilter_textActivated(const QString &currModel)
 {
-    if (arg1 != "None") {
-        QList<car> cars = offerslist->getModel(arg1);
-        QStringList carsBrands;
-        for (const auto &i : cars) {
-            if (!carsBrands.contains(i.brand))
-                carsBrands.append(i.brand);
-        }
-        brand->setStringList(carsBrands);
+    QString currBrand = ui->BrandFilter->currentText();
+    if (currModel != "")
+    {
+        // filtering OffersList by brand and model
+        list->setStringList(stringlist->filter(currBrand + ' ' + currModel));
+        ui->OffersList->setModel(list);
+    }
+    else
+        // trigger choosing brand in BrandFilter to move ModelFilter to initial state
+        on_BrandFilter_textActivated(currBrand);
+}
+
+// problems with this filter (bugs and OffersList should be filtered)
+void MainWindow::on_CountryFilter_textActivated(const QString &currCountry)
+{
+    QString currBrand = ui->BrandFilter->currentText();
+    if (currCountry != "")
+    {
+        // making set of all brands of given country
+        QSet<QString> carsBrands;
+        for (const auto &i: offerslist->getModel(currCountry))
+            carsBrands.insert(i.brand);
+
+        // changing BrandFilter by made set
+        brand->setStringList(carsBrands.values());
         ui->BrandFilter->setModel(brand);
-        if (carsBrands.length() == 1) {
-            model->setStringList({cars[0].brand});
-            ui->ModelFilter->setModel(model);
+
+        // if there is only one brand -> show all its models already :)
+        if (carsBrands.size() == 1)
+        {
+            on_BrandFilter_textActivated(carsBrands.values()[0]);
+            // ui->ModelFilter->setModel(model);
         }
         else
         {
-            ui->ModelFilter->clear();
-            // ui->OffersList->;
+            if (currBrand != "")
+                on_BrandFilter_textActivated(carsBrands.values()[0]);
+            on_BrandFilter_textActivated(currBrand);
         }
     }
 
@@ -72,22 +107,21 @@ void MainWindow::on_CountryFilter_textActivated(const QString &arg1)
     else {
         brand->setStringList(offerslist->brand);
         ui->BrandFilter->setModel(brand);
+        ui->BrandFilter->setCurrentText(currBrand);
     }
 }
 
-void MainWindow::on_ModelFilter_textActivated(const QString &arg1)
+void MainWindow::on_pushButton_clicked()
 {
-    QList<car> cars = offerslist->getModel(arg1);
-    if (arg1 != "None") {
-        QStringList stringList = this->stringlist->filter(cars[0].model);
-        list->setStringList(stringList);
-        ui->OffersList->setModel(list);
-    }
-    // somehow code below throws error that [] operator is out of range :)
-    // else
-    // {
-    //     QStringList stringList = this->stringlist->filter(cars[0].brand);
-    //     list->setStringList(stringList);
-    //     ui->OffersList->setModel(list);
-    // }
+    on_CountryFilter_textActivated("");
+    ui->CountryFilter->setCurrentText("");
+
+    ui->BrandFilter->setCurrentText("");
+    on_BrandFilter_textActivated("");
+
+    ui->ModelFilter->clear();
+
+    list->setStringList(*stringlist);
+    ui->OffersList->setModel(list);
 }
+
