@@ -140,9 +140,9 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>30</x>
        <y>100</y>
-       <width>808</width>
+       <width>371</width>
        <height>41</height>
       </rect>
      </property>
@@ -305,7 +305,7 @@
     <widget class="QLabel" name="PriceLabel">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>70</x>
        <y>70</y>
        <width>58</width>
        <height>16</height>
@@ -318,7 +318,7 @@
     <widget class="QLabel" name="MileageLabel">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>190</x>
        <y>70</y>
        <width>58</width>
        <height>16</height>
@@ -339,6 +339,19 @@
      </property>
      <property name="text">
       <string>Age</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>140</y>
+       <width>51</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset</string>
      </property>
     </widget>
    </widget>
@@ -371,7 +384,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>36</height>
     </rect>
    </property>
   </widget>

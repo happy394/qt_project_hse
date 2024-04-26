@@ -2,19 +2,15 @@
 #define OFFERSLIST_H
 
 #include <QAbstractTableModel>
-#include <QList>
-#include <QObject>
-#include <QSet>
-#include <QStringList>
-#include <QWidget>
-#include "car.h"
 #include <qfile.h>
+#include <QCoreApplication>
+#include "car.h"
 
 class offersList
 {
 public:
-    QList<car> list;        // vector
-    QStringList stringList; // vector of string
+    QList<car> list;        // vector of cars
+    QStringList stringList; // vector of preview info of cars
 
     // dropdown filters
     QSet<QString> brandSet;
@@ -24,8 +20,8 @@ public:
     QStringList model;
     QStringList country;
 
-    // returns all models for a given brand
-    QList<car> getModel(const QString &branda);
+    // returns all cars for a given key
+    QList<car> getModel(const QString &key);
 
     offersList();
 };

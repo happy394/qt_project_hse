@@ -1,17 +1,17 @@
 #include "offerslist.h"
-#include <QCoreApplication>
 
 offersList::offersList()
 {
-    qInfo() << qApp->applicationDirPath();
+    // qInfo() << qApp->applicationDirPath();
     QFile file("../../../../qt_project_hse/data/car_data.csv");
     file.open(QFile::ReadOnly | QFile::Text);
+    // if (!file.isOpen()) we can make a message window with warning
     QTextStream ss(&file);
-    QString s = ss.readLine();
+    QString s = ss.readLine(); // avoid header line
     QList<QString> buff;
-    this->countrySet.insert("None");
 
-    while (!ss.atEnd()) {
+    while (!ss.atEnd())
+    {
         s = ss.readLine();
         buff = s.split(",");
         car currCar = car(buff[0],
@@ -27,9 +27,14 @@ offersList::offersList()
                           buff[10],
                           buff[11],
                           buff[12]);
+
+        // filling offer list
         this->list.append(currCar);
         this->stringList << currCar.getCarString();
+
+        // sets for filling filters
         this->brandSet.insert(currCar.brand);
+        this->countrySet.insert(currCar.country);
 
         if (!modelMap.contains(currCar.brand))
             modelMap.insert(currCar.brand, {currCar});
@@ -43,15 +48,18 @@ offersList::offersList()
             modelMap.insert(currCar.model, {currCar});
         else
             this->modelMap[currCar.model].append(currCar);
-
-        this->countrySet.insert(currCar.country);
     }
-    std::sort(stringList.begin(), stringList.end(), [](const QString &curr, const QString &other) {
-        return curr[0] < other[0];
-    });
+
+    std::sort(stringList.begin(), stringList.end(), [](const QString &curr, const QString &other){return curr.split(' ')[0] < other.split(' ')[0];});
+
     // vars for adding items to comboBox (dropdown filters)
-    brand = brandSet.values();
-    country = countrySet.values();
+    brand = {""};
+    country = {""};
+    brand += brandSet.values();
+    country += countrySet.values();
+
+    std::sort(brand.begin()+1, brand.end(), [](const QString &curr, const QString &other){return curr < other;});
+    std::sort(country.begin()+1, country.end(), [](const QString &curr, const QString &other){return curr < other;});
 
     file.close();
 }
