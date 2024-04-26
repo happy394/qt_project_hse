@@ -2,6 +2,7 @@
 #define CAR_H
 
 #include <QString>
+#include <QStringList>
 
 struct car
 {
@@ -20,20 +21,21 @@ public:
     QString engineHp;
     QString age;
 
-    car(const QString &id,
-        const QString &brand,
-        const QString &model,
-        const QString &price,
-        const QString &city,
-        const QString &fuel,
-        const QString &transmission,
-        const QString &drive,
-        const QString &mileage,
-        const QString &country,
-        const QString &engineCapacity,
-        const QString &engineHp,
-        const QString &age);
+    car(const QString& id,
+        const QString& brand,
+        const QString& model,
+        const QString& price,
+        const QString& city,
+        const QString& fuel,
+        const QString& transmission,
+        const QString& drive,
+        const QString& mileage,
+        const QString& country,
+        const QString& engineCapacity,
+        const QString& engineHp,
+        const QString& age);
 
+    QStringList getCarString();
     ~car();
 };
 

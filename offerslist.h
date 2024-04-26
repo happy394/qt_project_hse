@@ -8,23 +8,24 @@
 #include <QAbstractTableModel>
 #include <QStringList>
 #include <QSet>
+#include "car.h"
 
 class offersList
 {
 public:
-    QList<QList<QString>> list; // vector
+    QList<car> list; // vector
     QStringList stringList; // vector of string
 
     // dropdown filters
     QSet <QString> brandSet;
-    QMap <QString, QSet <QString>> modelMap;
+    QMap <QString, QList <car>> modelMap;
     QSet <QString> countrySet;
     QStringList brand;
     QStringList model;
     QStringList country;
 
     // returns all models for a given brand
-    QStringList getModel(const QString& branda);
+    QList <car> getModel(const QString& branda);
 
     offersList();
 };

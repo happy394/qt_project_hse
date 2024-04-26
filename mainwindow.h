@@ -25,9 +25,12 @@ private slots:
 
     void on_CountryFilter_textActivated(const QString &arg1);
 
+    void on_ModelFilter_textActivated(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *list;
+    QStringList *stringlist;
     offersList *offerslist; // offers of used cars
     QStringListModel *brand;
     QStringListModel *model;

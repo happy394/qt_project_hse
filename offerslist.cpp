@@ -1,5 +1,4 @@
 #include "offerslist.h"
-#include "car.h"
 
 offersList::offersList()
 {
@@ -8,27 +7,33 @@ offersList::offersList()
     QTextStream ss(&file);
     QString s = ss.readLine();
     QList <QString> buff;
+    this->countrySet.insert("None");
 
     while (!ss.atEnd())
     {
         s = ss.readLine();
         buff = s.split(",");
-        this->list.append(buff);
         car currCar = car(buff[0], buff[1], buff[2], buff[3], buff[4], buff[5], buff[6], buff[7], buff[8], buff[9], buff[10], buff[11], buff[12]);
-
-        this->stringList << currCar.id + ".   " + currCar.brand + "   " + currCar.model + "   " + currCar.price;
+        this->list.append(currCar);
+        this->stringList << currCar.getCarString();
         this->brandSet.insert(currCar.brand);
+
         if (!modelMap.contains(currCar.brand))
-            modelMap.insert(currCar.brand, {currCar.model});
+            modelMap.insert(currCar.brand, {currCar});
         else
-            this->modelMap[currCar.brand].insert(currCar.model);
+            this->modelMap[currCar.brand].append(currCar);
         if (!modelMap.contains(currCar.country))
-            modelMap.insert(currCar.country, {currCar.brand});
+            modelMap.insert(currCar.country, {currCar});
         else
-            this->modelMap[currCar.country].insert(currCar.brand);
+            this->modelMap[currCar.country].append(currCar);
+        if (!modelMap.contains(currCar.model))
+            modelMap.insert(currCar.model, {currCar});
+        else
+            this->modelMap[currCar.model].append(currCar);
+
         this->countrySet.insert(currCar.country);
     }
-
+    std::sort(stringList.begin(), stringList.end(), [](const QString& curr, const QString& other){return curr[0] < other[0];});
     // vars for adding items to comboBox (dropdown filters)
     brand = brandSet.values();
     country = countrySet.values();
@@ -36,7 +41,7 @@ offersList::offersList()
     file.close();
 }
 
-QStringList offersList::getModel(const QString& key)
+QList <car> offersList::getModel(const QString& key)
 {
-    return modelMap[key].values();
+    return modelMap[key];
 }
