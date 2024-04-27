@@ -89,18 +89,13 @@ void MainWindow::on_CountryFilter_textActivated(const QString &currCountry)
         brand->setStringList(carsBrands.values());
         ui->BrandFilter->setModel(brand);
 
-        // if there is only one brand -> show all its models already :)
-        if (carsBrands.size() == 1)
-        {
-            on_BrandFilter_textActivated(carsBrands.values()[0]);
-            // ui->ModelFilter->setModel(model);
-        }
+        if (currBrand == "")
+            on_BrandFilter_textActivated(carsBrands.values().first());
         else
-        {
-            if (currBrand != "")
-                on_BrandFilter_textActivated(carsBrands.values()[0]);
             on_BrandFilter_textActivated(currBrand);
-        }
+
+        list->setStringList(stringlist->filter(currCountry + ' '));
+        ui->OffersList->setModel(list);
     }
 
     // returns BrandFilter to initial state
