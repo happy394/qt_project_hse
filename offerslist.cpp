@@ -53,8 +53,8 @@ offersList::offersList()
     std::sort(stringList.begin(), stringList.end(), [](const QString &curr, const QString &other){return curr.split(' ')[0] < other.split(' ')[0];});
 
     // vars for adding items to comboBox (dropdown filters)
-    brand = {""};
-    country = {""};
+    brand = {"All"};
+    country = {"All"};
     brand += brandSet.values();
     country += countrySet.values();
 

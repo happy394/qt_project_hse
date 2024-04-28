@@ -33,6 +33,14 @@ private slots:
 
     void on_PriceMax_textEdited(const QString &arg1);
 
+    void on_MileageMin_textEdited(const QString &arg1);
+
+    void on_MileageMax_textEdited(const QString &arg1);
+
+    void on_AgeMin_textEdited(const QString &arg1);
+
+    void on_AgeMax_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // offers of used cars
@@ -44,5 +52,11 @@ private:
     QStringList currOffersView;
     int minPrice = 0;
     long int maxPrice = 10000000000;
+    int minMileage = 0;
+    long int maxMileage = 10000000000;
+    int minAge = 0;
+    int maxAge = 1000;
+
+    void boundariesFilter();
 };
 #endif // MAINWINDOW_H

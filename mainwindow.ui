@@ -200,6 +200,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="maxLength">
+           <number>9</number>
+          </property>
          </widget>
         </item>
        </layout>
@@ -238,6 +241,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="maxLength">
+           <number>10</number>
+          </property>
          </widget>
         </item>
         <item>
@@ -250,6 +256,9 @@
           </property>
           <property name="text">
            <string/>
+          </property>
+          <property name="maxLength">
+           <number>10</number>
           </property>
          </widget>
         </item>
@@ -289,6 +298,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="maxLength">
+           <number>1000</number>
+          </property>
          </widget>
         </item>
         <item>
@@ -301,6 +313,9 @@
           </property>
           <property name="text">
            <string/>
+          </property>
+          <property name="maxLength">
+           <number>1000</number>
           </property>
          </widget>
         </item>

@@ -31,7 +31,7 @@ car::car(const QString &id,
 QStringList car::getCarString()
 {
     // last " " is needed to filter by country correct
-    return {brand + " " + model + " " + price + " " + country + " "};
+    return {brand + " " + model + " " + price + " " + mileage + " " + age + " " + country + " "};
 }
 
 car::~car(){};
