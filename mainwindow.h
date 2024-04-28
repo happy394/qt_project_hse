@@ -29,13 +29,20 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_PriceMin_textEdited(const QString &arg1);
+
+    void on_PriceMax_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
-    QStringListModel *list;
-    QStringList *stringlist;
     offersList *offerslist; // offers of used cars
-    QStringListModel *brand;
-    QStringListModel *model;
-    QStringListModel *country;
+    QStringListModel *offersView;
+    QStringListModel *brandModel;
+    QStringListModel *modelModel;
+    QStringListModel *countryModel;
+
+    QStringList currOffersView;
+    int minPrice = 0;
+    long int maxPrice = 10000000000;
 };
 #endif // MAINWINDOW_H
