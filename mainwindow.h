@@ -41,6 +41,8 @@ private slots:
 
     void on_AgeMax_textEdited(const QString &arg1);
 
+    void on_SearchButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // offers of used cars

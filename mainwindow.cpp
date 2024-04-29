@@ -34,6 +34,7 @@ MainWindow::~MainWindow()
     delete modelModel;
 }
 
+// Genesis and Hyndai Genesis :3
 void MainWindow::on_BrandFilter_textActivated(const QString &currBrand)
 {
     // if nothing was chosen
@@ -245,6 +246,14 @@ void MainWindow::on_AgeMax_textEdited(const QString &arg1)
     boundariesFilter();
 }
 
+void MainWindow::on_SearchButton_clicked()
+{
+    QString searchInput = ui->SearchBar->text();
+    QStringList newOffersView = currOffersView.filter(searchInput, Qt::CaseInsensitive);
+    offersView->setStringList(newOffersView);
+    ui->OffersList->setModel(offersView);
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     on_CountryFilter_textActivated("All");
@@ -265,4 +274,6 @@ void MainWindow::on_pushButton_clicked()
     ui->MileageMax->clear();
     ui->AgeMin->clear();
     ui->AgeMax->clear();
+
+    ui->SearchBar->clear();
 }

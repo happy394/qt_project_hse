@@ -101,7 +101,7 @@
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>39</y>
+      <y>70</y>
       <width>441</width>
       <height>171</height>
      </rect>
@@ -143,7 +143,7 @@
        <x>0</x>
        <y>100</y>
        <width>441</width>
-       <height>21</height>
+       <height>25</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="BoundaryFilters">
@@ -419,7 +419,7 @@
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>0</y>
+      <y>30</y>
       <width>441</width>
       <height>41</height>
      </rect>
@@ -432,6 +432,32 @@
       <widget class="QPushButton" name="SearchButton">
        <property name="text">
         <string>Search</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>160</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Home</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>Help</string>
        </property>
       </widget>
      </item>
