@@ -12,9 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     , countryModel(new QStringListModel)
 {
     ui->setupUi(this);
-
-    // offers list (also temp StringList for boundaries)
     currOffersView = offerslist->stringList;
+    // offers list (also temp StringList for boundaries)
     offersView->setStringList(offerslist->stringList);
     ui->OffersList->setModel(offersView);
 
@@ -34,155 +33,129 @@ MainWindow::~MainWindow()
     delete modelModel;
 }
 
-// Genesis and Hyndai Genesis :3
+void MainWindow::applyFilter()
+{
+    currOffersView.clear();
+    QString brand = ui->BrandFilter->currentText();
+    QString model = ui->ModelFilter->currentText();
+    // QString country = ui->CountryFilter->currentText();
+
+    for (auto i = offerslist->carsList.begin(); i != offerslist->carsList.end(); ++i)
+    {
+        car currCar = *i;
+
+        if (brand != "All" && model != "All" && model != "")
+        {
+            if (currCar.brand == brand && currCar.model == model
+                && minPrice <= currCar.price && currCar.price <= maxPrice
+                && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
+                && minAge <= currCar.age && currCar.age <= maxAge)
+            {
+                currOffersView.append(currCar.getCarString());
+            }
+        }
+        else if (brand != "All")
+        {
+            if (currCar.brand == brand
+                && minPrice <= currCar.price && currCar.price <= maxPrice
+                && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
+                && minAge <= currCar.age && currCar.age <= maxAge)
+            {
+                currOffersView.append(currCar.getCarString());
+            }
+        }
+        else
+        {
+            if (minPrice <= currCar.price && currCar.price <= maxPrice
+                && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
+                && minAge <= currCar.age && currCar.age <= maxAge)
+            {
+                currOffersView.append(currCar.getCarString());
+            }
+        }
+
+    }
+    if (searchInput != "")
+        currOffersView = currOffersView.filter(searchInput, Qt::CaseInsensitive);
+    offersView->setStringList(currOffersView);
+    ui->OffersList->setModel(offersView);
+}
+
 void MainWindow::on_BrandFilter_textActivated(const QString &currBrand)
 {
-    // if nothing was chosen
+    QList<QString> modelsList = {"All"};
+    for (const car& i: offerslist->getModel(currBrand))
+        modelsList.append(i.model);
+    modelsList.removeDuplicates();
+    modelModel->setStringList(modelsList);
+    ui->ModelFilter->setModel(modelModel);
     if (currBrand == "All")
-    {
         ui->ModelFilter->clear();
-        countryModel->setStringList(offerslist->country);
-        ui->CountryFilter->setModel(countryModel);
-        offersView->setStringList(currOffersView);
-        ui->OffersList->setModel(offersView);
-    }
-    else
-    {
-        // making list of models
-        QSet<QString> carsModelsSet;
-        for (const auto &i : offerslist->getModel(currBrand))
-            carsModelsSet.insert(i.model);
 
-        // sorting list of models
-        // "" is an empty element. It is needed to show that nothing was chosen
-        QStringList carsModels = {"All"};
-        carsModels += carsModelsSet.values();
-        std::sort(carsModels.begin()+1, carsModels.end()); // sorting in alphabetic order
-
-        // placing models in filter
-        modelModel->setStringList(carsModels);
-        ui->ModelFilter->setModel(modelModel);
-
-        // changing offers list
-        offersView->setStringList(currOffersView.filter(currBrand));
-        ui->OffersList->setModel(offersView);
-    }
-
+    applyFilter();
 }
 
 void MainWindow::on_ModelFilter_textActivated(const QString &currModel)
 {
-    QString currBrand = ui->BrandFilter->currentText();
-    if (currModel != "All")
-    {
-        // filtering OffersList by brand and model
-        offersView->setStringList(currOffersView.filter(currBrand + ' ' + currModel));
-        ui->OffersList->setModel(offersView);
-    }
-    else
-        // trigger choosing brand in BrandFilter to move ModelFilter to initial state
-        on_BrandFilter_textActivated(currBrand);
+    applyFilter();
 }
 
 void MainWindow::on_CountryFilter_textActivated(const QString &currCountry)
 {
-    QString currBrand = ui->BrandFilter->currentText();
-    if (currCountry != "All")
-    {
-        // making set of all brands of given country
-        QSet<QString> carsBrands = {"All"};
-        for (const auto &i: offerslist->getModel(currCountry))
-            carsBrands.insert(i.brand);
+//     QString currBrand = ui->BrandFilter->currentText();
+//     if (currCountry != "All")
+//     {
+//         // making set of all brands of given country
+//         QSet<QString> carsBrands = {"All"};
+//         for (const auto &i: offerslist->getModel(currCountry))
+//             carsBrands.insert(i.brand);
 
-        // changing BrandFilter by made set
-        brandModel->setStringList(carsBrands.values());
-        ui->BrandFilter->setModel(brandModel);
+//         // changing BrandFilter by made set
+//         brandModel->setStringList(carsBrands.values());
+//         ui->BrandFilter->setModel(brandModel);
 
-        if (currBrand.size() == 2)
-            on_BrandFilter_textActivated(carsBrands.values().first());
-        else
-            ui->BrandFilter->setCurrentText("All");
-            on_BrandFilter_textActivated("All");
+//         if (currBrand.size() == 2)
+//             on_BrandFilter_textActivated(carsBrands.values().first());
+//         else
+//             ui->BrandFilter->setCurrentText("All");
+//             on_BrandFilter_textActivated("All");
 
-        offersView->setStringList(currOffersView.filter(currCountry + ' '));
-        ui->OffersList->setModel(offersView);
-    }
+//         offersView->setStringList(currOffersView.filter(currCountry + ' '));
+//         ui->OffersList->setModel(offersView);
+//     }
 
-    // returns BrandFilter to initial state
-    else {
-        brandModel->setStringList(offerslist->brand);
-        ui->BrandFilter->setModel(brandModel);
-        ui->BrandFilter->setCurrentText(currBrand);
-    }
-}
-
-void MainWindow::boundariesFilter()
-{
-    QStringList newStringlist;
-    for (const auto& i: currOffersView)
-    {
-        int checkPrice = (*(i.split(' ').end()-5)).toInt();
-        int checkMileage = (*(i.split(' ').end()-4)).toInt();
-        int checkAge = (*(i.split(' ').end()-3)).toInt();
-
-        if (checkPrice >= minPrice && maxPrice >= checkPrice && checkMileage >= minMileage && maxMileage >= checkMileage
-            && checkAge >= minAge && maxAge >= checkAge)
-        {
-            newStringlist.append(i);
-        }
-    }
-
-    currOffersView = newStringlist;
-
-    // filtering offers again if they were filtered by brand or model
-    if (ui->BrandFilter->currentText() != "All")
-    {
-        QString currModel = ui->ModelFilter->currentText();
-        on_BrandFilter_textActivated(ui->BrandFilter->currentText());
-        on_ModelFilter_textActivated(currModel);
-        ui->ModelFilter->setCurrentText(currModel);
-    }
-    else
-    {
-        offersView->setStringList(currOffersView);
-        ui->OffersList->setModel(offersView);
-    }
+//     // returns BrandFilter to initial state
+//     else {
+//         brandModel->setStringList(offerslist->brand);
+//         ui->BrandFilter->setModel(brandModel);
+//         ui->BrandFilter->setCurrentText(currBrand);
+//     }
 }
 
 void MainWindow::on_PriceMin_textEdited(const QString &arg1)
 {
-    int currMinPrice;
+    qint64 currMinPrice;
     if (arg1 == "")
         currMinPrice = 0;
     else
-        currMinPrice = arg1.toInt();
-
-    // as currOffersView will be smaller due to bigger minPrice, we need to check if user
-    // makes as input smaller price so we can restore deleted offers and filter them again.
-    if (this->minPrice > currMinPrice)
-        currOffersView = offerslist->stringList;
+        currMinPrice = arg1.toUInt();
 
     this->minPrice = currMinPrice;
 
-    boundariesFilter();
+    applyFilter();
 }
 
 void MainWindow::on_PriceMax_textEdited(const QString &arg1)
 {
-    int currMaxPrice;
+    qint64 currMaxPrice;
     if (arg1 == "")
         currMaxPrice = 1000000000;
     else
-        currMaxPrice = arg1.toInt();
-
-    // as currOffersView will be smaller due to smaller maxPrice, we need to check if user
-    // makes as input bigger price so we can restore deleted offers and filter them again.
-    if (this->maxPrice < currMaxPrice)
-        currOffersView = offerslist->stringList;
+        currMaxPrice = arg1.toUInt();
 
     this->maxPrice = currMaxPrice;
 
-    boundariesFilter();
+    applyFilter();
 }
 
 void MainWindow::on_MileageMin_textEdited(const QString &arg1)
@@ -192,12 +165,10 @@ void MainWindow::on_MileageMin_textEdited(const QString &arg1)
         currMinMileage = 0;
     else
         currMinMileage = arg1.toInt();
-    if (this->minMileage > currMinMileage)
-        currOffersView = offerslist->stringList;
 
     this->minMileage = currMinMileage;
 
-    boundariesFilter();
+    applyFilter();
 }
 
 void MainWindow::on_MileageMax_textEdited(const QString &arg1)
@@ -207,12 +178,10 @@ void MainWindow::on_MileageMax_textEdited(const QString &arg1)
         currMaxMileage = 1000000000;
     else
         currMaxMileage = arg1.toInt();
-    if (this->maxMileage < currMaxMileage)
-        currOffersView = offerslist->stringList;
 
     this->maxMileage = currMaxMileage;
 
-    boundariesFilter();
+    applyFilter();
 }
 
 void MainWindow::on_AgeMin_textEdited(const QString &arg1)
@@ -222,12 +191,10 @@ void MainWindow::on_AgeMin_textEdited(const QString &arg1)
         currMinAge = 0;
     else
         currMinAge = arg1.toInt();
-    if (this->minAge > arg1.toInt())
-        currOffersView = offerslist->stringList;
 
     this->minAge = currMinAge;
 
-    boundariesFilter();
+    applyFilter();
 }
 
 void MainWindow::on_AgeMax_textEdited(const QString &arg1)
@@ -238,20 +205,15 @@ void MainWindow::on_AgeMax_textEdited(const QString &arg1)
     else
         currMaxAge = arg1.toInt();
 
-    if (this->maxAge < currMaxAge)
-        currOffersView = offerslist->stringList;
-
     this->maxAge = currMaxAge;
 
-    boundariesFilter();
+    applyFilter();
 }
 
 void MainWindow::on_SearchButton_clicked()
 {
-    QString searchInput = ui->SearchBar->text();
-    QStringList newOffersView = currOffersView.filter(searchInput, Qt::CaseInsensitive);
-    offersView->setStringList(newOffersView);
-    ui->OffersList->setModel(offersView);
+    searchInput = ui->SearchBar->text();
+    applyFilter();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -265,7 +227,6 @@ void MainWindow::on_pushButton_clicked()
     ui->ModelFilter->clear();
 
     offersView->setStringList(offerslist->stringList);
-    currOffersView = offerslist->stringList;
     ui->OffersList->setModel(offersView);
 
     ui->PriceMin->clear();

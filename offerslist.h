@@ -9,7 +9,7 @@
 class offersList
 {
 public:
-    QList<car> list;        // vector of cars
+    QHash<qint32, car> carsList;        // vector of cars
     QStringList stringList; // vector of preview info of cars
 
     // dropdown filters

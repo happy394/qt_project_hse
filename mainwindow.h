@@ -5,6 +5,7 @@
 
 #include <QStringListModel>
 #include "offerslist.h"
+#include "car.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -52,13 +53,16 @@ private:
     QStringListModel *countryModel;
 
     QStringList currOffersView;
+
     int minPrice = 0;
     long int maxPrice = 10000000000;
     int minMileage = 0;
     long int maxMileage = 10000000000;
     int minAge = 0;
     int maxAge = 1000;
+    QString searchInput = "";
 
     void boundariesFilter();
+    void applyFilter();
 };
 #endif // MAINWINDOW_H

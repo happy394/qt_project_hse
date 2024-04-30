@@ -1,20 +1,18 @@
 #include "car.h"
 
-car::car(const QString &id,
-         const QString &brand,
+car::car(const QString &brand,
          const QString &model,
-         const QString &price,
+         const qint64 &price,
          const QString &city,
          const QString &fuel,
          const QString &transmission,
          const QString &drive,
-         const QString &mileage,
+         const qint32 &mileage,
          const QString &country,
-         const QString &engineCapacity,
-         const QString &engineHp,
-         const QString &age)
-    : id(id)
-    , brand(brand)
+         const double &engineCapacity,
+         const qint32 &engineHp,
+         const qint16 &age)
+    : brand(brand)
     , model(model)
     , price(price)
     , city(city)
@@ -28,10 +26,10 @@ car::car(const QString &id,
     , age(age)
 {}
 
-QStringList car::getCarString()
+QString car::getCarString() const
 {
-    // last " " is needed to filter by country correct
-    return {brand + " " + model + " " + price + " " + mileage + " " + age + " " + country + " "};
+    return brand + " " + model + " " + QString::number(price) + " " + QString::number(mileage)
+               + " " + QString::number(age) + " " + country;
 }
 
 car::~car(){};

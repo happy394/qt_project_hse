@@ -9,27 +9,25 @@ offersList::offersList()
     QTextStream ss(&file);
     QString s = ss.readLine(); // avoid header line
     QList<QString> buff;
-
     while (!ss.atEnd())
     {
         s = ss.readLine();
         buff = s.split(",");
-        car currCar = car(buff[0],
-                          buff[1],
+        car currCar = car(buff[1],
                           buff[2],
-                          buff[3],
+                          buff[3].toUInt(),
                           buff[4],
                           buff[5],
                           buff[6],
                           buff[7],
-                          buff[8],
+                          buff[8].toInt(),
                           buff[9],
-                          buff[10],
-                          buff[11],
-                          buff[12]);
+                          buff[10].toDouble(),
+                          buff[11].toInt(),
+                          buff[12].toShort());
 
         // filling offer list
-        this->list.append(currCar);
+        this->carsList.insert(buff[0].toInt(), currCar);
         this->stringList << currCar.getCarString();
 
         // sets for filling filters

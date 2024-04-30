@@ -7,35 +7,33 @@
 struct car
 {
 public:
-    QString id;
     QString brand;
     QString model;
-    QString price;
+    int price;
     QString city;
     QString fuel;
     QString transmission;
     QString drive;
-    QString mileage;
+    int mileage;
     QString country;
-    QString engineCapacity;
-    QString engineHp;
-    QString age;
+    double engineCapacity;
+    int engineHp;
+    int age;
 
-    car(const QString &id,
-        const QString &brand,
+    car(const QString &brand,
         const QString &model,
-        const QString &price,
+        const qint64 &price,
         const QString &city,
         const QString &fuel,
         const QString &transmission,
         const QString &drive,
-        const QString &mileage,
+        const qint32 &mileage,
         const QString &country,
-        const QString &engineCapacity,
-        const QString &engineHp,
-        const QString &age);
+        const double &engineCapacity,
+        const qint32 &engineHp,
+        const qint16 &age);
 
-    QStringList getCarString();
+    QString getCarString() const;
     ~car();
 };
 
