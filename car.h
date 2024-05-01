@@ -4,7 +4,7 @@
 #include <QString>
 #include <QStringList>
 
-struct car
+class car
 {
 public:
     QString brand;
@@ -32,9 +32,10 @@ public:
         const double &engineCapacity = 0,
         const qint32 &engineHp = 0,
         const qint16 &age = 0);
+    ~car();
 
     QString getCarString() const;
-    ~car();
+    bool operator<(const car& other) const;
 };
 
 #endif // CAR_H

@@ -1,16 +1,15 @@
 #include "offerwindow.h"
 #include "ui_offerwindow.h"
-#include "mainwindow.h"
 
 OfferWindow::OfferWindow(car currCar, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::OfferWindow)
     , currCar(currCar)
-    , carOfferModel(new QStringListModel)
+    , carInfoModel(new QStringListModel)
 {
     ui->setupUi(this);
-    carOfferModel->setStringList({currCar.getCarString()});
-    ui->CarInfo->setModel(carOfferModel);
+    carInfoModel->setStringList({currCar.getCarString()});
+    ui->CarInfo->setModel(carInfoModel);
 }
 
 OfferWindow::~OfferWindow()

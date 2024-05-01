@@ -18,8 +18,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    car getCurrOffer();
     ~MainWindow();
+
 private slots:
     void on_BrandFilter_textActivated(const QString &arg1);
 
@@ -47,27 +47,29 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    offersList *offerslist; // offers of used cars
-    QStringListModel *offersView;
+    offersList *offerslist; // class with offers of used cars
+
+    // models for app objects
+    QStringListModel *offerModel;
     QStringListModel *brandModel;
     QStringListModel *modelModel;
     QStringListModel *countryModel;
 
-    QStringList currOffersView;
-    QList<car> currCarsList;
+    // changable containers with offers and cars
+    QStringList currOfferStringList;
+    QList<car> currCarList;
 
+    // boundaries
     int minPrice = 0;
     long int maxPrice = 10000000000;
     int minMileage = 0;
     long int maxMileage = 10000000000;
     int minAge = 0;
     int maxAge = 1000;
+
     QString searchInput = "";
-    car currOffer;
 
-    void boundariesFilter();
     void applyFilter();
-
 };
 
 #endif // MAINWINDOW_H

@@ -2,26 +2,27 @@
 #define OFFERSLIST_H
 
 #include <QAbstractTableModel>
-#include <qfile.h>
 #include <QCoreApplication>
+#include <qfile.h>
 #include "car.h"
 
 class offersList
 {
 public:
-    QHash<qint32, car> carsList;        // vector of cars
-    QStringList stringList; // vector of preview info of cars
+    // two containers for cars (string, class)
+    QList<car> carsList;
+    QStringList stringList;
 
     // dropdown filters
     QSet<QString> brandSet;
-    QMap<QString, QList<car>> modelMap;
     QSet<QString> countrySet;
+    QHash<QString, QStringList> modelMap;
     QStringList brand;
     QStringList model;
     QStringList country;
 
     // returns all cars for a given key
-    QList<car> getModel(const QString &key);
+    QStringList getModel(const QString &key);
 
     offersList();
 };

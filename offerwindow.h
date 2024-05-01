@@ -19,7 +19,7 @@ public:
 
 private:
     Ui::OfferWindow *ui;
-    QStringListModel *carOfferModel;
+    QStringListModel *carInfoModel;
     car currCar;
 };
 

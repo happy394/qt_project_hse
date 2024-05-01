@@ -26,10 +26,15 @@ car::car(const QString &brand,
     , age(age)
 {}
 
+car::~car(){};
+
 QString car::getCarString() const
 {
     return brand + " " + model + " " + QString::number(price) + " " + QString::number(mileage)
-               + " " + QString::number(age) + " " + country;
+           + " " + QString::number(age) + " " + country;
 }
 
-car::~car(){};
+bool car::operator<(const car& other) const
+{
+    return this->brand < other.brand;
+}

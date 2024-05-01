@@ -7,40 +7,51 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , offerslist(new offersList)
-    , offersView(new QStringListModel)
+    , offerModel(new QStringListModel)
     , brandModel(new QStringListModel)
     , modelModel(new QStringListModel)
     , countryModel(new QStringListModel)
 {
+    // main window set up
     ui->setupUi(this);
-    currOffersView = offerslist->stringList;
-    // offers list (also temp StringList for boundaries)
-    offersView->setStringList(offerslist->stringList);
-    ui->OffersList->setModel(offersView);
+
+    // initial offers list
+    offerModel->setStringList(offerslist->stringList);
+    ui->OffersList->setModel(offerModel);
+
     // dropdown filters
     brandModel->setStringList(offerslist->brand);
     countryModel->setStringList(offerslist->country);
     ui->BrandFilter->setModel(brandModel);
     ui->CountryFilter->setModel(countryModel);
+
+    // changable containers for this window
+    currOfferStringList = offerslist->stringList;
+    currCarList = offerslist->carsList;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete offersView;
+    delete offerslist;
+    delete offerModel;
     delete brandModel;
-    delete countryModel;
     delete modelModel;
+    delete countryModel;
 }
 
 void MainWindow::applyFilter()
 {
-    currOffersView.clear();
-    currCarsList.clear();
+    // clear containers to fill them with filtered data
+    currOfferStringList.clear();
+    currCarList.clear();
+
+    // get current filters text
     QString brand = ui->BrandFilter->currentText();
     QString model = ui->ModelFilter->currentText();
-    // QString country = ui->CountryFilter->currentText();
+        // QString country = ui->CountryFilter->currentText();
 
+    // iterate through all cars. find those which are ok with filters
     for (auto i = offerslist->carsList.begin(); i != offerslist->carsList.end(); ++i)
     {
         car currCar = *i;
@@ -52,8 +63,8 @@ void MainWindow::applyFilter()
                 && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
                 && minAge <= currCar.age && currCar.age <= maxAge)
             {
-                currOffersView.append(currCar.getCarString());
-                currCarsList.append(currCar);
+                currOfferStringList.append(currCar.getCarString());
+                currCarList.append(currCar);
             }
         }
         else if (brand != "All")
@@ -63,8 +74,8 @@ void MainWindow::applyFilter()
                 && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
                 && minAge <= currCar.age && currCar.age <= maxAge)
             {
-                currOffersView.append(currCar.getCarString());
-                currCarsList.append(currCar);
+                currOfferStringList.append(currCar.getCarString());
+                currCarList.append(currCar);
             }
         }
         else
@@ -73,29 +84,38 @@ void MainWindow::applyFilter()
                 && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
                 && minAge <= currCar.age && currCar.age <= maxAge)
             {
-                currOffersView.append(currCar.getCarString());
-                currCarsList.append(currCar);
+                currOfferStringList.append(currCar.getCarString());
+                currCarList.append(currCar);
             }
         }
 
     }
+
+    // extra filter by search text
     if (searchInput != "")
-        currOffersView = currOffersView.filter(searchInput, Qt::CaseInsensitive);
-    offersView->setStringList(currOffersView);
-    ui->OffersList->setModel(offersView);
+        currOfferStringList = currOfferStringList.filter(searchInput, Qt::CaseInsensitive);
+
+    // finally add filtered data to OffersList
+    offerModel->setStringList(currOfferStringList);
+    ui->OffersList->setModel(offerModel);
 }
 
 void MainWindow::on_BrandFilter_textActivated(const QString &currBrand)
 {
-    QList<QString> modelsList = {"All"};
-    for (const car& i: offerslist->getModel(currBrand))
-        modelsList.append(i.model);
-    modelsList.removeDuplicates();
-    modelModel->setStringList(modelsList);
+    // make models list according to brand
+    QStringList modelList = {"All"};
+    modelList += offerslist->getModel(currBrand);
+    modelList.removeDuplicates();
+
+    // fill model dropdown filter
+    modelModel->setStringList(modelList);
     ui->ModelFilter->setModel(modelModel);
+
+    // check if we need to clear model dropdown filter
     if (currBrand == "All")
         ui->ModelFilter->clear();
 
+    // filter OffersList
     applyFilter();
 }
 
@@ -124,8 +144,8 @@ void MainWindow::on_CountryFilter_textActivated(const QString &currCountry)
 //             ui->BrandFilter->setCurrentText("All");
 //             on_BrandFilter_textActivated("All");
 
-//         offersView->setStringList(currOffersView.filter(currCountry + ' '));
-//         ui->OffersList->setModel(offersView);
+//         offerModel->setStringList(currOfferStringList.filter(currCountry + ' '));
+//         ui->OffersList->setModel(offerModel);
 //     }
 
 //     // returns BrandFilter to initial state
@@ -138,78 +158,60 @@ void MainWindow::on_CountryFilter_textActivated(const QString &currCountry)
 
 void MainWindow::on_PriceMin_textEdited(const QString &arg1)
 {
-    qint64 currMinPrice;
     if (arg1 == "")
-        currMinPrice = 0;
+        minPrice = 0;
     else
-        currMinPrice = arg1.toUInt();
-
-    this->minPrice = currMinPrice;
+        minPrice = arg1.toUInt();
 
     applyFilter();
 }
 
 void MainWindow::on_PriceMax_textEdited(const QString &arg1)
 {
-    qint64 currMaxPrice;
     if (arg1 == "")
-        currMaxPrice = 1000000000;
+        maxPrice = 1000000000;
     else
-        currMaxPrice = arg1.toUInt();
-
-    this->maxPrice = currMaxPrice;
+        maxPrice = arg1.toUInt();
 
     applyFilter();
 }
 
 void MainWindow::on_MileageMin_textEdited(const QString &arg1)
 {
-    int currMinMileage;
     if (arg1 == "")
-        currMinMileage = 0;
+        minMileage = 0;
     else
-        currMinMileage = arg1.toInt();
-
-    this->minMileage = currMinMileage;
+        minMileage = arg1.toInt();
 
     applyFilter();
 }
 
 void MainWindow::on_MileageMax_textEdited(const QString &arg1)
 {
-    int currMaxMileage;
     if (arg1 == "")
-        currMaxMileage = 1000000000;
+        maxMileage = 1000000000;
     else
-        currMaxMileage = arg1.toInt();
-
-    this->maxMileage = currMaxMileage;
+        maxMileage = arg1.toInt();
 
     applyFilter();
 }
 
 void MainWindow::on_AgeMin_textEdited(const QString &arg1)
 {
-    int currMinAge;
     if (arg1 == "")
-        currMinAge = 0;
+        minAge = 0;
     else
-        currMinAge = arg1.toInt();
-
-    this->minAge = currMinAge;
+        minAge = arg1.toInt();
 
     applyFilter();
 }
 
 void MainWindow::on_AgeMax_textEdited(const QString &arg1)
 {
-    int currMaxAge;
     if (arg1 == "")
-        currMaxAge = 1000000000;
+        maxAge = 1000000000;
     else
-        currMaxAge = arg1.toInt();
-
-    this->maxAge = currMaxAge;
+        maxAge = arg1.toInt();
 
     applyFilter();
 }
@@ -222,17 +224,20 @@ void MainWindow::on_SearchButton_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    on_CountryFilter_textActivated("All");
+    // reset OffersList
+    offerModel->setStringList(offerslist->stringList);
+    ui->OffersList->setModel(offerModel);
+
+    // reset changable containers for this window
+    currOfferStringList = offerslist->stringList;
+    currCarList = offerslist->carsList;
+
+    // reset dropdown filters
     ui->CountryFilter->setCurrentText("All");
-
     ui->BrandFilter->setCurrentText("All");
-    on_BrandFilter_textActivated("All");
-
     ui->ModelFilter->clear();
 
-    offersView->setStringList(offerslist->stringList);
-    ui->OffersList->setModel(offersView);
-
+    // reset boundaries
     ui->PriceMin->clear();
     ui->PriceMax->clear();
     ui->MileageMin->clear();
@@ -240,12 +245,12 @@ void MainWindow::on_pushButton_clicked()
     ui->AgeMin->clear();
     ui->AgeMax->clear();
 
+    // reset search bar
     ui->SearchBar->clear();
 }
 
 void MainWindow::on_OffersList_doubleClicked(const QModelIndex &index)
 {
-    currOffer = currCarsList[index.row()];
-    OfferWindow *w2 = new OfferWindow(currOffer);
+    OfferWindow *w2 = new OfferWindow(currCarList[index.row()]);
     w2->show();
 }
