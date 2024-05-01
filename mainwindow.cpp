@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "offerslist.h"
+#include "offerwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     // offers list (also temp StringList for boundaries)
     offersView->setStringList(offerslist->stringList);
     ui->OffersList->setModel(offersView);
-
     // dropdown filters
     brandModel->setStringList(offerslist->brand);
     countryModel->setStringList(offerslist->country);
@@ -36,6 +36,7 @@ MainWindow::~MainWindow()
 void MainWindow::applyFilter()
 {
     currOffersView.clear();
+    currCarsList.clear();
     QString brand = ui->BrandFilter->currentText();
     QString model = ui->ModelFilter->currentText();
     // QString country = ui->CountryFilter->currentText();
@@ -52,6 +53,7 @@ void MainWindow::applyFilter()
                 && minAge <= currCar.age && currCar.age <= maxAge)
             {
                 currOffersView.append(currCar.getCarString());
+                currCarsList.append(currCar);
             }
         }
         else if (brand != "All")
@@ -62,6 +64,7 @@ void MainWindow::applyFilter()
                 && minAge <= currCar.age && currCar.age <= maxAge)
             {
                 currOffersView.append(currCar.getCarString());
+                currCarsList.append(currCar);
             }
         }
         else
@@ -71,6 +74,7 @@ void MainWindow::applyFilter()
                 && minAge <= currCar.age && currCar.age <= maxAge)
             {
                 currOffersView.append(currCar.getCarString());
+                currCarsList.append(currCar);
             }
         }
 
@@ -237,4 +241,11 @@ void MainWindow::on_pushButton_clicked()
     ui->AgeMax->clear();
 
     ui->SearchBar->clear();
+}
+
+void MainWindow::on_OffersList_doubleClicked(const QModelIndex &index)
+{
+    currOffer = currCarsList[index.row()];
+    OfferWindow *w2 = new OfferWindow(currOffer);
+    w2->show();
 }

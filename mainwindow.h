@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
 #include <QStringListModel>
 #include "offerslist.h"
 #include "car.h"
@@ -19,8 +18,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    car getCurrOffer();
     ~MainWindow();
-
 private slots:
     void on_BrandFilter_textActivated(const QString &arg1);
 
@@ -44,6 +43,8 @@ private slots:
 
     void on_SearchButton_clicked();
 
+    void on_OffersList_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // offers of used cars
@@ -53,6 +54,7 @@ private:
     QStringListModel *countryModel;
 
     QStringList currOffersView;
+    QList<car> currCarsList;
 
     int minPrice = 0;
     long int maxPrice = 10000000000;
@@ -61,8 +63,11 @@ private:
     int minAge = 0;
     int maxAge = 1000;
     QString searchInput = "";
+    car currOffer;
 
     void boundariesFilter();
     void applyFilter();
+
 };
+
 #endif // MAINWINDOW_H
