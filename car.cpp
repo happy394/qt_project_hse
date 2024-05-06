@@ -34,6 +34,18 @@ QString car::getCarString() const
            + " " + QString::number(age) + " " + country;
 }
 
+QString car::getCarName() const
+{
+    return brand + " " + model + '\n' + QString::number(price);
+}
+QString car::getCarInfo() const
+{
+    return "Mileage:    " + QString::number(mileage) + '\n' + "Age:    " + QString::number(age) + '\n' +
+           "Fuel:   " + fuel + '\n' + "Transmission type:   " + transmission + '\n' +
+           "Drive type:    " + drive + '\n' +  "Engine capacity:    " + QString::number(engineCapacity) + '\n' +
+           "Horse power:    " + QString::number(engineHp) + '\n' + "Country:    " + country;
+}
+
 bool car::operator<(const car& other) const
 {
     return this->brand < other.brand;
