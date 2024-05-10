@@ -38,6 +38,7 @@ public:
     QString getCarInfo() const;
     QString getCarName() const;
     bool operator<(const car& other) const;
+    bool operator==(const car& other) const;
 };
 
 #endif // CAR_H

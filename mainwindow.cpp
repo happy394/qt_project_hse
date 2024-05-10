@@ -50,6 +50,7 @@ void MainWindow::applyFilter()
     // get current filters text
     QString brand = ui->BrandFilter->currentText();
     QString model = ui->ModelFilter->currentText();
+    searchInput = ui->SearchBar->text();
         // QString country = ui->CountryFilter->currentText();
 
     // iterate through all cars. find those which are ok with filters
@@ -93,9 +94,17 @@ void MainWindow::applyFilter()
     }
 
     // extra filter by search text
-    searchInput = ui->SearchBar->text();
     if (searchInput != "")
+    {
+        QList<car> tempCarList;
         currOfferStringList = currOfferStringList.filter(searchInput, Qt::CaseInsensitive);
+        for (auto &k: currCarList)
+        {
+            if (currOfferStringList.contains(k.getCarString()))
+                tempCarList.append(k);
+        }
+        currCarList = tempCarList;
+    }
 
     // finally add filtered data to OffersList
     offerModel->setStringList(currOfferStringList);

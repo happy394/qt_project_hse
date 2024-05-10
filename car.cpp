@@ -50,3 +50,12 @@ bool car::operator<(const car& other) const
 {
     return this->brand < other.brand;
 }
+
+bool car::operator==(const car& other) const
+{
+    if (this->brand != other.brand || this->model != other.model || this->price != other.price ||this->city != other.city ||
+        this->fuel != other.fuel ||this->transmission != other.transmission ||this->drive != other.drive ||this->mileage != other.mileage ||
+        this->country != other.country ||this->engineCapacity != other.engineCapacity ||this->engineHp != other.engineHp ||this->age != other.age)
+        return false;
+    return true;
+}
