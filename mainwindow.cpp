@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "offerslist.h"
 #include "offerwindow.h"
+#include "loginwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -92,6 +93,7 @@ void MainWindow::applyFilter()
     }
 
     // extra filter by search text
+    searchInput = ui->SearchBar->text();
     if (searchInput != "")
         currOfferStringList = currOfferStringList.filter(searchInput, Qt::CaseInsensitive);
 
@@ -218,20 +220,11 @@ void MainWindow::on_AgeMax_textEdited(const QString &arg1)
 
 void MainWindow::on_SearchButton_clicked()
 {
-    searchInput = ui->SearchBar->text();
     applyFilter();
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    // reset OffersList
-    offerModel->setStringList(offerslist->stringList);
-    ui->OffersList->setModel(offerModel);
-
-    // reset changable containers for this window
-    currOfferStringList = offerslist->stringList;
-    currCarList = offerslist->carsList;
-
     // reset dropdown filters
     ui->CountryFilter->setCurrentText("All");
     ui->BrandFilter->setCurrentText("All");
@@ -239,14 +232,22 @@ void MainWindow::on_pushButton_clicked()
 
     // reset boundaries
     ui->PriceMin->clear();
+    minPrice = 0;
     ui->PriceMax->clear();
+    maxPrice = 100000000;
     ui->MileageMin->clear();
+    minMileage = 0;
     ui->MileageMax->clear();
+    maxMileage = 100000000;
     ui->AgeMin->clear();
+    minAge = 0;
     ui->AgeMax->clear();
+    maxAge = 100000000;
 
     // reset search bar
     ui->SearchBar->clear();
+
+    applyFilter();
 }
 
 void MainWindow::on_OffersList_doubleClicked(const QModelIndex &index)
@@ -254,3 +255,10 @@ void MainWindow::on_OffersList_doubleClicked(const QModelIndex &index)
     OfferWindow *w2 = new OfferWindow(currCarList[index.row()]);
     w2->show();
 }
+
+void MainWindow::on_ProfileButton_clicked()
+{
+    LoginWindow *w3 = new LoginWindow();
+    w3->show();
+}
+

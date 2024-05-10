@@ -45,6 +45,8 @@ private slots:
 
     void on_OffersList_doubleClicked(const QModelIndex &index);
 
+    void on_ProfileButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // class with offers of used cars
