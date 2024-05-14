@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         offerslist.h offerslist.cpp
         car.h car.cpp
         offerwindow.h offerwindow.cpp offerwindow.ui
+        profilewindow.h profilewindow.cpp profilewindow.ui
+        profile.h profile.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET qt_project_hse APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

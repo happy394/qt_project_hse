@@ -2,6 +2,10 @@
 #include "./ui_mainwindow.h"
 #include "offerslist.h"
 #include "offerwindow.h"
+#include <qmessagebox.h>
+#include "profilewindow.h"
+#include <memory>
+#include "profile.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
     // changable containers for this window
     currOfferStringList = offerslist->stringList;
     currCarList = offerslist->carsList;
+
+    profile = std::make_shared<Profile>();
+    profileWindow = std::make_shared<ProfileWindow>(profile);
+
 }
 
 MainWindow::~MainWindow()
@@ -254,3 +262,9 @@ void MainWindow::on_OffersList_doubleClicked(const QModelIndex &index)
     OfferWindow *w2 = new OfferWindow(currCarList[index.row()]);
     w2->show();
 }
+
+void MainWindow::on_ProfileButton_clicked()
+{
+    profileWindow ->show();
+}
+
