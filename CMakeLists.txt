@@ -25,9 +25,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         offerslist.h offerslist.cpp
         car.h car.cpp
         offerwindow.h offerwindow.cpp offerwindow.ui
-        database.h
-        database.cpp
-        loginwindow.h loginwindow.cpp loginwindow.ui
+
+
+
 
     )
 # Define target properties for Android with Qt 6 as:

@@ -23,8 +23,6 @@ public:
 private slots:
     void on_BrandFilter_textActivated(const QString &arg1);
 
-    void on_CountryFilter_textActivated(const QString &arg1);
-
     void on_ModelFilter_textActivated(const QString &arg1);
 
     void on_pushButton_clicked();
@@ -45,8 +43,6 @@ private slots:
 
     void on_OffersList_doubleClicked(const QModelIndex &index);
 
-    void on_ProfileButton_clicked();
-
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // class with offers of used cars
@@ -55,13 +51,11 @@ private:
     QStringListModel *offerModel;
     QStringListModel *brandModel;
     QStringListModel *modelModel;
-    QStringListModel *countryModel;
 
     // changable containers with offers and cars
     QStringList currOfferStringList;
     QList<car> currCarList;
 
-    // boundaries
     int minPrice = 0;
     long int maxPrice = 10000000000;
     int minMileage = 0;

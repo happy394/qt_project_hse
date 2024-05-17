@@ -132,9 +132,6 @@
       <item>
        <widget class="QComboBox" name="ModelFilter"/>
       </item>
-      <item>
-       <widget class="QComboBox" name="CountryFilter"/>
-      </item>
      </layout>
     </widget>
     <widget class="QWidget" name="layoutWidget">
@@ -378,7 +375,7 @@
     <widget class="QLabel" name="BrandLabel">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>90</x>
        <y>10</y>
        <width>58</width>
        <height>16</height>
@@ -391,7 +388,7 @@
     <widget class="QLabel" name="ModelLabel">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>320</x>
        <y>10</y>
        <width>58</width>
        <height>16</height>
@@ -399,19 +396,6 @@
      </property>
      <property name="text">
       <string>Model</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="CountryLabel">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>10</y>
-       <width>58</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Country</string>
      </property>
     </widget>
    </widget>
