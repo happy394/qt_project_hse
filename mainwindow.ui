@@ -14,433 +14,348 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>-60</x>
-      <y>260</y>
-      <width>141</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="Offers">
-     <item>
-      <spacer name="LeftSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>60</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>152</x>
-      <y>50</y>
-      <width>451</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
-     <item>
-      <widget class="QFrame" name="FilterFrame">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>30</y>
-          <width>441</width>
-          <height>32</height>
-         </rect>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="1" column="3" colspan="2">
+     <widget class="QLabel" name="ModelLabel">
+      <property name="text">
+       <string>Model</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="PriceMin">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>9</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5" colspan="3">
+     <widget class="QComboBox" name="CountryFilter"/>
+    </item>
+    <item row="3" column="1" colspan="2">
+     <widget class="QLabel" name="PriceLabel">
+      <property name="text">
+       <string>Price</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QLineEdit" name="MileageMin">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3" colspan="2">
+     <widget class="QLabel" name="MileageLabel">
+      <property name="text">
+       <string>Mileage</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="5" colspan="3">
+     <widget class="QLabel" name="AgeLabel">
+      <property name="text">
+       <string>Age</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="BrandLabel">
+      <property name="text">
+       <string>Brand</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="7">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Reset</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <layout class="QHBoxLayout" name="Offers"/>
+    </item>
+    <item row="4" column="5">
+     <widget class="QLineEdit" name="AgeMin">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>1000</number>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="7">
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QHBoxLayout" name="Search">
+        <item>
+         <widget class="QLineEdit" name="SearchBar"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="SearchButton">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="1" colspan="2">
+     <widget class="QComboBox" name="BrandFilter">
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="8">
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <layout class="QHBoxLayout" name="ExtraButtons">
+        <property name="rightMargin">
+         <number>0</number>
         </property>
-        <layout class="QHBoxLayout" name="DropdownFilters">
-         <item>
-          <widget class="QComboBox" name="BrandFilter">
-           <property name="frame">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="ModelFilter"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="CountryFilter"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>100</y>
-          <width>820</width>
-          <height>25</height>
-         </rect>
+        <property name="bottomMargin">
+         <number>0</number>
         </property>
-        <layout class="QHBoxLayout" name="BoundaryFilters">
-         <item>
-          <layout class="QHBoxLayout" name="PriceBoundaries">
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="PriceMin">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="sizeIncrement">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="baseSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="autoFillBackground">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>9</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="PriceMax">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>9</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="MileageBoundaries">
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="MileageMin">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="sizeIncrement">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="baseSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="MileageMax">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>10</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="AgeBoundaries">
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="AgeMin">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="sizeIncrement">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="baseSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>1000</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="AgeMax">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>1000</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QLabel" name="PriceLabel">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>80</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Price</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="MileageLabel">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>80</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Mileage</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="AgeLabel">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>80</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Age</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton">
-        <property name="geometry">
-         <rect>
-          <x>380</x>
-          <y>140</y>
-          <width>51</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Reset</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="BrandLabel">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>10</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Brand</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="ModelLabel">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>10</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Model</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="CountryLabel">
-        <property name="geometry">
-         <rect>
-          <x>340</x>
-          <y>10</y>
-          <width>58</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Country</string>
-        </property>
-       </widget>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>0</y>
-      <width>421</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <item>
-      <layout class="QHBoxLayout" name="Search">
-       <item>
-        <widget class="QLineEdit" name="SearchBar"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="SearchButton">
-         <property name="text">
-          <string>Search</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>0</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_6">
-     <item>
-      <layout class="QHBoxLayout" name="ExtraButtons">
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QPushButton" name="FavoriteButton">
-         <property name="text">
-          <string>Fav</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="ProfileButton">
-         <property name="text">
-          <string>Profile</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QListView" name="OffersList">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>260</y>
-      <width>328</width>
-      <height>194</height>
-     </rect>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::NoEditTriggers</set>
-    </property>
-   </widget>
+        <item>
+         <widget class="QPushButton" name="FavoriteButton">
+          <property name="text">
+           <string>Fav</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ProfileButton">
+          <property name="text">
+           <string>Profile</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="5" colspan="2">
+     <widget class="QLabel" name="CountryLabel">
+      <property name="text">
+       <string>Country</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="6" colspan="2">
+     <widget class="QLineEdit" name="AgeMax">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>1000</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3" colspan="2">
+     <widget class="QComboBox" name="ModelFilter"/>
+    </item>
+    <item row="4" column="4">
+     <widget class="QLineEdit" name="MileageMax">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLineEdit" name="PriceMax">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>9</number>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0" colspan="9">
+     <widget class="QListView" name="OffersList">
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="6">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -448,7 +363,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>36</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

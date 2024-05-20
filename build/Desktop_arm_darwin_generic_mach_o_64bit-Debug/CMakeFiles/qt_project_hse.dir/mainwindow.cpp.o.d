@@ -1121,14 +1121,14 @@ CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o: \
   /opt/homebrew/include/QtWidgets/qtabbar.h \
   /opt/homebrew/include/QtWidgets/qrubberband.h \
   /opt/homebrew/include/QtWidgets/qframe.h \
-  /opt/homebrew/include/QtWidgets/QFrame \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qframe.h \
-  /opt/homebrew/include/QtWidgets/QHBoxLayout \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
+  /opt/homebrew/include/QtWidgets/QGridLayout \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qgridlayout.h \
   /opt/homebrew/include/QtWidgets/qlayout.h \
   /opt/homebrew/include/QtWidgets/qlayoutitem.h \
   /opt/homebrew/include/QtWidgets/qboxlayout.h \
   /opt/homebrew/include/QtWidgets/qgridlayout.h \
+  /opt/homebrew/include/QtWidgets/QHBoxLayout \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qboxlayout.h \
   /opt/homebrew/include/QtWidgets/QLabel \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/include/QtGui/qpicture.h \
@@ -1154,8 +1154,6 @@ CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o: \
   /opt/homebrew/include/QtWidgets/QPushButton \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qpushbutton.h \
   /opt/homebrew/include/QtWidgets/qabstractbutton.h \
-  /opt/homebrew/include/QtWidgets/QSpacerItem \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qlayoutitem.h \
   /opt/homebrew/include/QtWidgets/QStatusBar \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qstatusbar.h \
   /opt/homebrew/include/QtWidgets/QVBoxLayout \
