@@ -2,7 +2,7 @@
 
 offersList::offersList()
 {
-    QFile file("../../../../qt_project_hse/data/car_data.csv");
+    QFile file("../../../../../../qt_project_hse/data/car_data.csv");
     file.open(QFile::ReadOnly | QFile::Text);
     QTextStream ss(&file);
     QString s = ss.readLine(); // avoids header line

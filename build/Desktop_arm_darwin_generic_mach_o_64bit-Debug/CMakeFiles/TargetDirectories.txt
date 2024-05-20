@@ -1,0 +1,9 @@
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/qt_project_hse.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/edit_cache.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/rebuild_cache.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/list_install_components.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/install.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/install/local.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/install/strip.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/qt_project_hse_autogen_timestamp_deps.dir
+/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/CMakeFiles/qt_project_hse_autogen.dir
