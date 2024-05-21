@@ -2,6 +2,8 @@
 #include "mainwindow.h"
 #include "offerslist.h"
 #include "offerwindow.h"
+#include "guidelinedialog.h"
+#include <QMenuBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
     // changable containers for this window
     currOfferStringList = offerslist->stringList;
     currCarList = offerslist->carsList;
+
+    // Add "Help" menu item
+    QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
+    QAction *helpAction = new QAction(tr("Open Guideline"), this);
+    helpMenu->addAction(helpAction);
+    connect(helpAction, &QAction::triggered, this, &MainWindow::showGuideline);
 }
 
 MainWindow::~MainWindow()
@@ -217,4 +225,10 @@ void MainWindow::on_OffersList_doubleClicked(const QModelIndex &index)
 {
     OfferWindow *w2 = new OfferWindow(currCarList[index.row()]);
     w2->show();
+}
+
+void MainWindow::showGuideline()
+{
+    GuidelineDialog guidelineDialog(this);
+    guidelineDialog.exec();
 }

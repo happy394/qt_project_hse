@@ -43,6 +43,8 @@ private slots:
 
     void on_OffersList_doubleClicked(const QModelIndex &index);
 
+    void showGuideline();
+
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // class with offers of used cars
