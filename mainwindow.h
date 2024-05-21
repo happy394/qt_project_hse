@@ -5,9 +5,6 @@
 #include <QStringListModel>
 #include <QTableWidgetItem>
 #include "offerslist.h"
-#include "car.h"
-#include "profilewindow.h"
-#include "profile.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -50,14 +47,10 @@ private slots:
 
     void on_SortFilter_textActivated(const QString &arg1);
 
-    void on_ProfileButton_clicked();
-
 private:
 
     Ui::MainWindow *ui;
     offersList *offerslist; // class with offers of used cars
-    std::shared_ptr<ProfileWindow> profileWindow;
-    std::shared_ptr<Profile> profile;
 
     // models for app objects
     QTableWidgetItem *offerModel;
