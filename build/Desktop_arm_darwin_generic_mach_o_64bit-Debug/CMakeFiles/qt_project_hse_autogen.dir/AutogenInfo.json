@@ -353,6 +353,12 @@
 			null
 		],
 		[
+			"/Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.h",
+			"MU",
+			"EWIEGA46WW/moc_guidelinedialog.cpp",
+			null
+		],
+		[
 			"/Users/c4ndlemandle/Documents/C++/qt_project_hse/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -429,6 +435,11 @@
 	[
 		[
 			"/Users/c4ndlemandle/Documents/C++/qt_project_hse/car.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.cpp",
 			"MU",
 			null
 		],

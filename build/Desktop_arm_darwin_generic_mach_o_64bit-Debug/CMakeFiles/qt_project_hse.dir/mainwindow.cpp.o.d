@@ -1146,8 +1146,6 @@ CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o: \
   /opt/homebrew/include/QtWidgets/qabstractscrollarea.h \
   /opt/homebrew/include/QtCore/qitemselectionmodel.h \
   /opt/homebrew/include/QtWidgets/QMainWindow \
-  /opt/homebrew/include/QtWidgets/QMenu \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qmenu.h \
   /opt/homebrew/include/QtWidgets/QMenuBar \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qmenubar.h \
   /opt/homebrew/include/QtWidgets/qmenu.h \
@@ -1160,4 +1158,8 @@ CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o: \
   /opt/homebrew/include/QtWidgets/QWidget \
   /opt/homebrew/lib/QtWidgets.framework/Headers/qwidget.h \
   /Users/c4ndlemandle/Documents/C++/qt_project_hse/offerwindow.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \
+  /Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QDialog \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qdialog.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QMenuBar

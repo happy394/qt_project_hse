@@ -15,6 +15,13 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
+    <item row="5" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="3" colspan="2">
      <widget class="QLabel" name="ModelLabel">
       <property name="text">
@@ -65,13 +72,6 @@
     <item row="2" column="5" colspan="3">
      <widget class="QComboBox" name="CountryFilter"/>
     </item>
-    <item row="3" column="1" colspan="2">
-     <widget class="QLabel" name="PriceLabel">
-      <property name="text">
-       <string>Price</string>
-      </property>
-     </widget>
-    </item>
     <item row="4" column="3">
      <widget class="QLineEdit" name="MileageMin">
       <property name="enabled">
@@ -109,6 +109,13 @@
       </property>
      </widget>
     </item>
+    <item row="5" column="3">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="3" colspan="2">
      <widget class="QLabel" name="MileageLabel">
       <property name="text">
@@ -123,17 +130,17 @@
       </property>
      </widget>
     </item>
+    <item row="5" column="2">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="2">
      <widget class="QLabel" name="BrandLabel">
       <property name="text">
        <string>Brand</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="7">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Reset</string>
       </property>
      </widget>
     </item>
@@ -199,6 +206,13 @@
      <widget class="QComboBox" name="BrandFilter">
       <property name="frame">
        <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Min</string>
       </property>
      </widget>
     </item>
@@ -284,6 +298,20 @@
       </property>
      </widget>
     </item>
+    <item row="5" column="6">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
     <item row="4" column="2">
      <widget class="QLineEdit" name="PriceMax">
       <property name="sizePolicy">
@@ -313,45 +341,17 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="label">
+    <item row="3" column="1">
+     <widget class="QLabel" name="PriceLabel">
       <property name="text">
-       <string>Min</string>
+       <string>Price</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="2">
-     <widget class="QLabel" name="label_2">
+    <item row="6" column="6">
+     <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>Max</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Min</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="4">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Max</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="5">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Min</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="6">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Max</string>
+       <string>Reset</string>
       </property>
      </widget>
     </item>
@@ -366,34 +366,35 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <widget class="QMenu" name="menufilter">
-     <property name="title">
-      <string>filter</string>
-     </property>
-     <addaction name="actiondropdown"/>
-    </widget>
-    <addaction name="actionhelp"/>
-    <addaction name="menufilter"/>
-   </widget>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="enabled">
     <bool>true</bool>
    </property>
   </widget>
-  <action name="actionhelp">
-   <property name="text">
-    <string>search</string>
-   </property>
-  </action>
   <action name="actiondropdown">
    <property name="text">
     <string>dropdown</string>
+   </property>
+  </action>
+  <action name="action_Open">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="action_Open_2">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="action_Open_3">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="actionGuidiline">
+   <property name="text">
+    <string>&amp;Open Guideline</string>
    </property>
   </action>
  </widget>

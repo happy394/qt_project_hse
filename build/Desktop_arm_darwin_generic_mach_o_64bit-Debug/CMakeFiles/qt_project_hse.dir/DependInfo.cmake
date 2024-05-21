@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "qt_project_hse_autogen/timestamp" "custom" "qt_project_hse_autogen/deps"
   "/Users/c4ndlemandle/Documents/C++/qt_project_hse/car.cpp" "CMakeFiles/qt_project_hse.dir/car.cpp.o" "gcc" "CMakeFiles/qt_project_hse.dir/car.cpp.o.d"
+  "/Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.cpp" "CMakeFiles/qt_project_hse.dir/guidelinedialog.cpp.o" "gcc" "CMakeFiles/qt_project_hse.dir/guidelinedialog.cpp.o.d"
   "/Users/c4ndlemandle/Documents/C++/qt_project_hse/main.cpp" "CMakeFiles/qt_project_hse.dir/main.cpp.o" "gcc" "CMakeFiles/qt_project_hse.dir/main.cpp.o.d"
   "/Users/c4ndlemandle/Documents/C++/qt_project_hse/mainwindow.cpp" "CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o.d"
   "/Users/c4ndlemandle/Documents/C++/qt_project_hse/offerslist.cpp" "CMakeFiles/qt_project_hse.dir/offerslist.cpp.o" "gcc" "CMakeFiles/qt_project_hse.dir/offerslist.cpp.o.d"

@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "qt_project_hse_autogen"
   "CMakeFiles/qt_project_hse.dir/car.cpp.o"
   "CMakeFiles/qt_project_hse.dir/car.cpp.o.d"
+  "CMakeFiles/qt_project_hse.dir/guidelinedialog.cpp.o"
+  "CMakeFiles/qt_project_hse.dir/guidelinedialog.cpp.o.d"
   "CMakeFiles/qt_project_hse.dir/main.cpp.o"
   "CMakeFiles/qt_project_hse.dir/main.cpp.o.d"
   "CMakeFiles/qt_project_hse.dir/mainwindow.cpp.o"

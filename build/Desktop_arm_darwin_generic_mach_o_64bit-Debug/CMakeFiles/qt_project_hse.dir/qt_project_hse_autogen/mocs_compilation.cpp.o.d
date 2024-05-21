@@ -1,9 +1,9 @@
 CMakeFiles/qt_project_hse.dir/qt_project_hse_autogen/mocs_compilation.cpp.o: \
   /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/mocs_compilation.cpp \
-  /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/moc_mainwindow.cpp \
-  /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/../../../../mainwindow.h \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
-  /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
+  /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/moc_guidelinedialog.cpp \
+  /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/../../../../guidelinedialog.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QDialog \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qdialog.h \
   /opt/homebrew/include/QtWidgets/qtwidgetsglobal.h \
   /opt/homebrew/include/QtGui/qtguiglobal.h \
   /opt/homebrew/include/QtCore/qglobal.h \
@@ -1055,6 +1055,11 @@ CMakeFiles/qt_project_hse.dir/qt_project_hse_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/include/QtWidgets/qsizepolicy.h \
   /opt/homebrew/include/QtGui/qcursor.h \
   /opt/homebrew/include/QtGui/qbitmap.h \
+  /opt/homebrew/include/QtCore/qtmochelpers.h \
+  /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/moc_mainwindow.cpp \
+  /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/../../../../mainwindow.h \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/QMainWindow \
+  /opt/homebrew/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /opt/homebrew/include/QtWidgets/qtabwidget.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QStringListModel \
   /opt/homebrew/lib/QtCore.framework/Headers/qstringlistmodel.h \
@@ -1098,7 +1103,6 @@ CMakeFiles/qt_project_hse.dir/qt_project_hse_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/lib/QtCore.framework/Headers/qstring.h \
   /opt/homebrew/lib/QtCore.framework/Headers/QStringList \
   /opt/homebrew/lib/QtCore.framework/Headers/qstringlist.h \
-  /opt/homebrew/include/QtCore/qtmochelpers.h \
   /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/moc_offerwindow.cpp \
   /Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/EWIEGA46WW/../../../../offerwindow.h \
   /opt/homebrew/lib/QtWidgets.framework/Headers/QWidget \

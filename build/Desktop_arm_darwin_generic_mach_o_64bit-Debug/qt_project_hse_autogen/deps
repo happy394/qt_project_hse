@@ -130,6 +130,8 @@ qt_project_hse_autogen/timestamp: \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/build/Desktop_arm_darwin_generic_mach_o_64bit-Debug/qt_project_hse_autogen/moc_predefs.h \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/car.cpp \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/car.h \
+	/Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.cpp \
+	/Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.h \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/main.cpp \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/mainwindow.cpp \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/mainwindow.h \
@@ -289,8 +291,10 @@ qt_project_hse_autogen/timestamp: \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtGui.framework/Versions/A/Headers/qtransform.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
+	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QDialog \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
+	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qdialog.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qmainwindow.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
 	/opt/homebrew/Cellar/qt/6.6.2_1/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h \
@@ -506,6 +510,7 @@ qt_project_hse_autogen/timestamp: \
 	/opt/homebrew/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-release.cmake \
 	/opt/homebrew/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/opt/homebrew/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
+	/Users/c4ndlemandle/Documents/C++/qt_project_hse/guidelinedialog.ui \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/mainwindow.ui \
 	/Users/c4ndlemandle/Documents/C++/qt_project_hse/offerwindow.ui \
 	/Applications/CMake.app/Contents/bin/cmake
