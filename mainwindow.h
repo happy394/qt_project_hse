@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStringListModel>
+#include <QTableWidgetItem>
 #include "offerslist.h"
 #include "car.h"
 
@@ -41,22 +42,22 @@ private slots:
 
     void on_SearchButton_clicked();
 
-    void on_OffersList_doubleClicked(const QModelIndex &index);
-
     void showGuideline();
+
+    void on_OffersList_cellDoubleClicked(int row, int column);
+
+    void on_SortFilter_textActivated(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
     offersList *offerslist; // class with offers of used cars
 
     // models for app objects
-    QStringListModel *offerModel;
+    QTableWidgetItem *offerModel;
     QStringListModel *brandModel;
     QStringListModel *modelModel;
 
-    // changable containers with offers and cars
-    QStringList currOfferStringList;
-    QList<car> currCarList;
+    QStringList carInfoList;
 
     int minPrice = 0;
     long int maxPrice = 10000000000;
