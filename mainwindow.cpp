@@ -4,6 +4,10 @@
 #include "offerwindow.h"
 #include "guidelinedialog.h"
 #include <QMenuBar>
+#include <qmessagebox.h>
+#include "profilewindow.h"
+#include <memory>
+#include "profile.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -39,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
     QAction *helpAction = new QAction(tr("Open Guideline"), this);
     helpMenu->addAction(helpAction);
     connect(helpAction, &QAction::triggered, this, &MainWindow::showGuideline);
+
+    profile = std::make_shared<Profile>();
+    profileWindow = std::make_shared<ProfileWindow>(profile);
 }
 
 MainWindow::~MainWindow()
@@ -259,9 +266,12 @@ chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].t
     w2->show();
 }
 
-
 void MainWindow::on_SortFilter_textActivated(const QString &arg1)
 {
+}
 
+void MainWindow::on_ProfileButton_clicked()
+{
+    profileWindow ->show();
 }
 
