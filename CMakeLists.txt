@@ -27,6 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         offerwindow.h offerwindow.cpp offerwindow.ui
         guidelinedialog.h guidelinedialog.cpp guidelinedialog.ui
         aboutdialog.h aboutdialog.cpp aboutdialog.ui
+        resources.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET qt_project_hse APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
