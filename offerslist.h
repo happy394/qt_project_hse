@@ -11,11 +11,9 @@ class offersList
 public:
     // two containers for cars (string, class)
     QList<car> carsList;
-    QStringList stringList;
 
     // dropdown filters
     QSet<QString> brandSet;
-    QSet<QString> countrySet;
     QHash<QString, QStringList> modelMap;
     QStringList brand;
     QStringList model;

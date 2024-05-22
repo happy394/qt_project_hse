@@ -16,11 +16,9 @@ offersList::offersList()
 
         // filling offer list
         this->carsList.append(currCar);
-        this->stringList << currCar.getCarString();
 
         // sets for filling filters
         this->brandSet.insert(currCar.brand);
-        this->countrySet.insert(currCar.country);
 
         if (!modelMap.contains(currCar.brand))
             modelMap.insert(currCar.brand, {currCar.model});
@@ -32,19 +30,14 @@ offersList::offersList()
             this->modelMap[currCar.country].append(currCar.brand);
     }
 
-    // sort both string and cars containers  !!! similarly !!!
-    std::sort(stringList.begin(), stringList.end(), [](const QString &curr, const QString &other){return curr.split(' ')[0] < other.split(' ')[0];});
     std::sort(carsList.begin(), carsList.end());
 
     // initial vars for adding items to comboBox (dropdown filters)
     brand = {"All"};
-    country = {"All"};
     brand += brandSet.values();
-    country += countrySet.values();
 
     // sort brand and country dropdown filters
     std::sort(brand.begin()+1, brand.end(), [](const QString &curr, const QString &other){return curr < other;});
-    std::sort(country.begin()+1, country.end(), [](const QString &curr, const QString &other){return curr < other;});
 
     file.close();
 }

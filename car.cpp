@@ -46,6 +46,13 @@ QString car::getCarInfo() const
            "Horse power:    " + QString::number(engineHp) + '\n' + "Country:    " + country;
 }
 
+QStringList car::getCarList() const
+{
+    QStringList res = {this->brand, this->model, QString::number(this->price), this->city, this->fuel, this->transmission, this->drive,
+QString::number(this->mileage), this->country, QString::number(this->engineCapacity), QString::number(this->engineHp), QString::number(this->age)};
+    return res;
+}
+
 bool car::operator<(const car& other) const
 {
     return this->brand < other.brand;
