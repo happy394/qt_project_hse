@@ -17,9 +17,6 @@ int main(int argc, char *argv[])
     std::mutex mtx;
     std::condition_variable cv;
     QSettings settings("drumdrum");
-    settings.remove("path_1");
-    settings.remove("path_2");
-    settings.remove("path_amount");
 
     initialCheck(settings);
     if (settings.value("path_amount").toInt() == 0)

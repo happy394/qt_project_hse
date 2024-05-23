@@ -2,16 +2,6 @@
 #include "datapath.h"
 #include <QSettings>
 
-void newPath()
-{
-    std::mutex mtx;
-    std::condition_variable cv;
-    dataPath d;
-    d.exec();
-    std::unique_lock<std::mutex> lock(mtx);
-    cv.wait(lock, [&d] { return d.functionCalled || !d.isVisible(); });
-}
-
 offersList::offersList()
 {
     QSettings settings("drumdrum");
@@ -28,63 +18,52 @@ offersList::offersList()
     }
     if (filePath == "" && pathAmount != 0)
     {
-        newPath();
+        std::mutex mtx;
+        std::condition_variable cv;
+        dataPath d;
+        d.exec();
+        std::unique_lock<std::mutex> lock(mtx);
+        cv.wait(lock, [&d] { return d.functionCalled || !d.isVisible(); });
         filePath = settings.value("path_" + QString::number(pathAmount + 1)).toString();
     }
 
-    // if (filePath == "" && pathAmount != 0)
-    // {
-    //     std::mutex mtx;
-    //     std::condition_variable cv;
-    //     dataPath d;
-    //     d.show();
-    //     std::unique_lock<std::mutex> lock(mtx);
-    //     cv.wait(lock, [&d] { return d.functionCalled || !d.isVisible(); });
-    // }
     QFile file(filePath);
     file.open(QFile::ReadOnly | QFile::Text);
-
-    QFileDevice::FileError err = QFileDevice::NoError;
-    if (!file.isOpen())
-        err = file.error();
-    else
+    QTextStream ss(&file);
+    QString s = ss.readLine(); // avoids header line
+    QList<QString> buff;
+    while (!ss.atEnd())
     {
-        QTextStream ss(&file);
-        QString s = ss.readLine(); // avoids header line
-        QList<QString> buff;
-        while (!ss.atEnd())
-        {
-            s = ss.readLine();
-            buff = s.split(",");
-            car currCar = car(buff[1], buff[2], buff[3].toUInt(), buff[4], buff[5], buff[6], buff[7], buff[8].toInt(), buff[9], buff[10].toDouble(),
-                              buff[11].toInt(), buff[12].toShort());
+        s = ss.readLine();
+        buff = s.split(",");
+        car currCar = car(buff[1], buff[2], buff[3].toUInt(), buff[4], buff[5], buff[6], buff[7], buff[8].toInt(), buff[9], buff[10].toDouble(),
+                          buff[11].toInt(), buff[12].toShort());
 
-            // filling offer list
-            this->carsList.append(currCar);
+        // filling offer list
+        this->carsList.append(currCar);
 
-            // sets for filling filters
-            this->brandSet.insert(currCar.brand);
+        // sets for filling filters
+        this->brandSet.insert(currCar.brand);
 
-            if (!modelMap.contains(currCar.brand))
-                modelMap.insert(currCar.brand, {currCar.model});
-            else
-                this->modelMap[currCar.brand].append(currCar.model);
-            if (!modelMap.contains(currCar.country))
-                modelMap.insert(currCar.country, {currCar.brand});
-            else
-                this->modelMap[currCar.country].append(currCar.brand);
-        }
-
-        std::sort(carsList.begin(), carsList.end());
-
-        // initial vars for adding items to comboBox (dropdown filters)
-        brand = {"All"};
-        brand += brandSet.values();
-
-        // sort brand and country dropdown filters
-        std::sort(brand.begin()+1, brand.end(), [](const QString &curr, const QString &other){return curr < other;});
-        file.close();
+        if (!modelMap.contains(currCar.brand))
+            modelMap.insert(currCar.brand, {currCar.model});
+        else
+            this->modelMap[currCar.brand].append(currCar.model);
+        if (!modelMap.contains(currCar.country))
+            modelMap.insert(currCar.country, {currCar.brand});
+        else
+            this->modelMap[currCar.country].append(currCar.brand);
     }
+
+    std::sort(carsList.begin(), carsList.end());
+
+    // initial vars for adding items to comboBox (dropdown filters)
+    brand = {"All"};
+    brand += brandSet.values();
+
+    // sort brand and country dropdown filters
+    std::sort(brand.begin()+1, brand.end(), [](const QString &curr, const QString &other){return curr < other;});
+    file.close();
 }
 
 QStringList offersList::getModel(const QString &key)
