@@ -278,7 +278,7 @@ void MainWindow::on_SortFilter_textActivated(const QString &arg1)
     if (arg1 != "")
     {
         int column = sortList.indexOf(arg1);
-        ui->OffersList->sortItems(column-1);
+        ui->OffersList->sortItems(column);
     }
     else
         ui->OffersList->sortItems(0);
