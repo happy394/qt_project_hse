@@ -1,11 +1,14 @@
 #include "./ui_mainwindow.h"
 #include "mainwindow.h"
-#include "offerslist.h"
+// #include "offerslist.h"
 #include "offerwindow.h"
 #include "guidelinedialog.h"
 #include "car.h"
 #include <QMenuBar>
 #include <qmessagebox.h>
+// #include "profilewindow.h"
+#include <memory>
+// #include "profile.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,6 +47,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     sortModel->setStringList(sortList);
     ui->SortFilter->setModel(sortModel);
+
+    profile = std::make_shared<Profile>();
+    profileWindow = std::make_shared<ProfileWindow>(profile);
+
+    pqxx::work worker (profile->connector);
+    pqxx::result response = worker.exec("SELECT * FROM \"Profiles\"");
+
+    for (int i = 0; i < response.size(); ++i)
+    {
+        qInfo() << "Id: " << response[i][0].c_str() << " Email: " << response[i][1].c_str();
+    }
 
     // Add "Help" menu item
     QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
@@ -283,3 +297,7 @@ void MainWindow::on_SortFilter_textActivated(const QString &arg1)
     else
         ui->OffersList->sortItems(0);
 }
+// void MainWindow::on_ProfileButton_clicked()
+// {
+//     profileWindow ->show();
+// }

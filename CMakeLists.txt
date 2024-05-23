@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         car.h car.cpp
         offerwindow.h offerwindow.cpp offerwindow.ui
         guidelinedialog.h guidelinedialog.cpp guidelinedialog.ui
+        profile.h profile.cpp
+        profilewindow.h profilewindow.cpp profilewindow.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET qt_project_hse APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -44,7 +46,18 @@ else()
         )
     endif()
 endif()
-target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /opt/homebrew/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib)
+
+
+# find_package(PkgConfig REQUIRED)
+# pkg_check_modules(LIBPQXX libpqxx)
+# pkg_check_modules(LIBPQ libpq)
+
+# target_include_directories(qt_project_hse PRIVATE ${LIBPQXX_INCLUDE_DIRS} ${LIBPQ_INCLUDE_DIRS})
+target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /usr/local/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib)
+# target_link_options(qt_project_hse PUBLIC ${LIBPQXX_LDFLAGS})
+# target_link_options(qt_project_hse PUBLIC ${LIBPQ_LDFLAGS})
+
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
