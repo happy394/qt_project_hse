@@ -4,6 +4,7 @@
 #include "offerwindow.h"
 #include "guidelinedialog.h"
 #include "car.h"
+#include "aboutdialog.h"
 #include <QMenuBar>
 #include <qmessagebox.h>
 // #include "profilewindow.h"
@@ -65,6 +66,12 @@ MainWindow::MainWindow(QWidget *parent)
     QAction *helpAction = new QAction(tr("Open Guideline"), this);
     helpMenu->addAction(helpAction);
     connect(helpAction, &QAction::triggered, this, &MainWindow::showGuideline);
+
+    // Add "About" menu item
+    QMenu *moreMenu = menuBar()->addMenu(tr("More"));
+    QAction *aboutAction = new QAction(tr("About"), this);
+    moreMenu->addAction(aboutAction);
+    connect(aboutAction, &QAction::triggered, this, &MainWindow::showAboutDialog);
 }
 
 MainWindow::~MainWindow()
@@ -284,6 +291,12 @@ void MainWindow::showGuideline()
 {
     GuidelineDialog guidelineDialog(this);
     guidelineDialog.exec();
+}
+
+void MainWindow::showAboutDialog()
+{
+    AboutDialog aboutDialog(this);
+    aboutDialog.exec();
 }
 
 void MainWindow::on_OffersList_cellDoubleClicked(int row, int column)

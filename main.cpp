@@ -2,6 +2,8 @@
 #include "datapath.h"
 #include <QApplication>
 #include <QSettings>
+#include <QMainWindow>
+#include <QIcon>
 
 void initialCheck(QSettings &s)
 {
@@ -17,7 +19,9 @@ int main(int argc, char *argv[])
     std::mutex mtx;
     std::condition_variable cv;
     QSettings settings("drumdrum");
-
+    // Set the application icon
+    a.setWindowIcon(QIcon(":/icons/appicon.ico"));
+  
     initialCheck(settings);
     if (settings.value("path_amount").toInt() == 0)
     {
@@ -26,7 +30,9 @@ int main(int argc, char *argv[])
         std::unique_lock<std::mutex> lock(mtx);
         cv.wait(lock, [&d] { return d.functionCalled || !d.isVisible(); });
     }
+
     MainWindow w;
     w.show();
+
     return a.exec();
 }

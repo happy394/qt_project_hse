@@ -45,6 +45,8 @@ private slots:
 
     void showGuideline();
 
+     void showAboutDialog();
+
     void on_OffersList_cellDoubleClicked(int row, int column);
 
     void on_SortFilter_textActivated(const QString &arg1);
