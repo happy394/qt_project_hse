@@ -6,10 +6,10 @@
 #include <qfile.h>
 #include "car.h"
 
-class offersList
+struct offersList
 {
 public:
-    // two containers for cars (string, class)
+
     QList<car> carsList;
 
     // dropdown filters
@@ -17,7 +17,6 @@ public:
     QHash<QString, QStringList> modelMap;
     QStringList brand;
     QStringList model;
-    QStringList country;
 
     // returns all cars for a given key
     QStringList getModel(const QString &key);

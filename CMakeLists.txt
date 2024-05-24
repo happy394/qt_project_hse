@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         car.h car.cpp
         offerwindow.h offerwindow.cpp offerwindow.ui
         guidelinedialog.h guidelinedialog.cpp guidelinedialog.ui
+        datapath.h datapath.cpp datapath.ui
         profile.h profile.cpp
         profilewindow.h profilewindow.cpp profilewindow.ui
     )
