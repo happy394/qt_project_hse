@@ -41,12 +41,3 @@ pqxx::connection Profile::connecting(){
         std::cerr << e.what() << std::endl;
     }
 }
-
-
-// pqxx::work worker (connector);
-// pqxx::result response = worker.exec("SELECT * FROM \"Profiles\"");
-
-// for (int i = 0; i < response.size(); ++i)
-// {
-//     qInfo() << "Id: " << response[i][0].c_str() << " Email: " << response[i][1].c_str();
-// }
