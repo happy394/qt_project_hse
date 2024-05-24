@@ -50,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent)
     sortModel->setStringList({"", sortList[3], sortList[8], sortList[12]});
     ui->SortFilter->setModel(sortModel);
 
+
+    // Profile pointers Please don't delte without telling me!(confier)
     profile = std::make_shared<Profile>();
     profileWindow = std::make_shared<ProfileWindow>(profile);
 
@@ -324,7 +326,11 @@ void MainWindow::on_SortFilter_textActivated(const QString &arg1)
     else
         ui->OffersList->sortItems(0);
 }
-// void MainWindow::on_ProfileButton_clicked()
-// {
-//     profileWindow ->show();
-// }
+
+
+//Profile window Please don't delte without telling me!(confier)
+void MainWindow::on_FavoriteButton_clicked()
+{
+    profileWindow ->show();
+}
+

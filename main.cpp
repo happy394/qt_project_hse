@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     QSettings settings("drumdrum");
     // Set the application icon
     a.setWindowIcon(QIcon(":/icons/appicon.ico"));
-  
+    qInfo() << settings.fileName();
     initialCheck(settings);
     if (settings.value("path_amount").toInt() == 0)
     {

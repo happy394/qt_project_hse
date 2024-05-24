@@ -51,7 +51,8 @@ private slots:
 
     void on_SortFilter_textActivated(const QString &arg1);
 
-    // void on_ProfileButton_clicked();
+    void on_FavoriteButton_clicked();
+
 private:
 
     Ui::MainWindow *ui;

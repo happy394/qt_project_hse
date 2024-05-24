@@ -1,6 +1,9 @@
 #include <iostream>
 #include "profile.h"
 
+
+//Please don't delte without telling me!(confier)
+
 Profile::Profile() {}
 Profile::~Profile() {}
 

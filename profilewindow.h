@@ -4,6 +4,8 @@
 #include "profile.h"
 #include <QDialog>
 
+//Please don't delte without telling me!(confier)
+
 namespace Ui {
 class ProfileWindow;
 }
@@ -17,7 +19,7 @@ public:
     ~ProfileWindow();
 
 private slots:
-    void on_buttonBox_accepted();
+    void on_pushButton_clicked();
 
 private:
     Ui::ProfileWindow *ui;

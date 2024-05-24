@@ -4,6 +4,11 @@
 #include <QVector>
 #include <QModelIndex>
 #include <pqxx/pqxx>
+
+
+// Please don't delte without telling me!(confier)
+
+
 class Profile
 {
 private:
