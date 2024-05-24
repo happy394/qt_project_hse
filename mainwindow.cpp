@@ -13,13 +13,15 @@ MainWindow::MainWindow(QWidget *parent)
     , offerslist(new offersList)
     , brandModel(new QStringListModel)
     , modelModel(new QStringListModel)
+    , sortModel(new QStringListModel)
 {
     // main window set up
     ui->setupUi(this);
 
-    ui->OffersList->setRowCount(offerslist->carsList.size());
+    //offers list
     ui->OffersList->setColumnCount(12);
-
+    ui->OffersList->setRowCount(offerslist->carsList.size());
+    ui->OffersList->setHorizontalHeaderLabels(sortList.sliced(1));
     for (int i = 0; i < offerslist->carsList.size(); ++i)
     {
         car currCar = offerslist->carsList[i];
@@ -27,7 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
         for (int j = 0; j < 12; ++j)
         {
             offerModel = new QTableWidgetItem;
-            offerModel->setData(Qt::DisplayRole, carInfoList[j]);
+            // make int in table for sort
+            if (j == 2 || j == 7 || j == 11)
+                offerModel->setData(Qt::DisplayRole, carInfoList[j].toInt());
+            else
+                offerModel->setData(Qt::DisplayRole, carInfoList[j]);
             ui->OffersList->setItem(i, j, offerModel);
         }
     }
@@ -35,6 +41,10 @@ MainWindow::MainWindow(QWidget *parent)
     // dropdown filters
     brandModel->setStringList(offerslist->brand);
     ui->BrandFilter->setModel(brandModel);
+
+    // sort filter
+    sortModel->setStringList({"", sortList[3], sortList[8], sortList[12]});
+    ui->SortFilter->setModel(sortModel);
 
     // Add "Help" menu item
     QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
@@ -50,6 +60,7 @@ MainWindow::~MainWindow()
     delete offerModel;
     delete brandModel;
     delete modelModel;
+    delete sortModel;
 }
 
 void MainWindow::applyFilter()
@@ -111,17 +122,31 @@ void MainWindow::applyFilter()
         }
     }
 
+    int column = sortList.indexOf(ui->SortFilter->currentText());
+    ui->OffersList->sortItems(column-1);
+    ui->OffersList->setHorizontalHeaderLabels(sortList.sliced(1));
+
     // extra filter by search text
     // if (searchInput != "")
     // {
-    //     QList<car> tempCarList;
-    //     currOfferStringList = currOfferStringList.filter(searchInput, Qt::CaseInsensitive);
-    //     for (auto &k: currCarList)
+    //     int prevRow = -2;
+    //     QList<QTableWidgetItem *> searchedCars = ui->OffersList->findItems(searchInput, Qt::MatchContains);
+    //     for (int l = 0; l < searchedCars.size(); ++l)
     //     {
-    //         if (currOfferStringList.contains(k.getCarString()))
-    //             tempCarList.append(k);
+
+    //         for (int m = 0; m < 12; ++m)
+    //         {
+    //             qInfo() << searchedCars[l]->text() << searchedCars[l]->row();
+    //             if (searchedCars[l]->row() != prevRow)
+    //             {
+    //                 prevRow = searchedCars[l]->row();
+    //                 offerModel = new QTableWidgetItem;
+    //                 offerModel->setData(Qt::DisplayRole, ui->OffersList->item(searchedCars[l]->row(), m)->text());
+    //                 ui->OffersList->setItem(l, m, offerModel);
+    //             }
+    //         }
     //     }
-    //     currCarList = tempCarList;
+    //     ui->OffersList->setRowCount(searchedCars.size());
     // }
 }
 
@@ -219,6 +244,7 @@ void MainWindow::on_pushButton_clicked()
     // reset dropdown filters
     ui->BrandFilter->setCurrentText("All");
     ui->ModelFilter->clear();
+    ui->SortFilter->setCurrentText("");
 
     // reset boundaries
     ui->PriceMin->clear();
@@ -263,4 +289,11 @@ chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].t
 
 void MainWindow::on_SortFilter_textActivated(const QString &arg1)
 {
+    if (arg1 != "")
+    {
+        int column = sortList.indexOf(arg1);
+        ui->OffersList->sortItems(column-1);
+    }
+    else
+        ui->OffersList->sortItems(0);
 }

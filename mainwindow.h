@@ -56,6 +56,10 @@ private:
     QTableWidgetItem *offerModel;
     QStringListModel *brandModel;
     QStringListModel *modelModel;
+    QStringListModel *sortModel;
+
+    QStringList sortList = {"", "brand", "model", "price", "city", "fuel", "transmission", "drive", "mileage",
+"country", "engine capacity", "engine hp", "age"};
 
     QStringList carInfoList;
 
