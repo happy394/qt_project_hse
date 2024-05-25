@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     // main window set up
     ui->setupUi(this);
 
+
     //offers list
     ui->OffersList->setColumnCount(12);
     ui->OffersList->setRowCount(offerslist->carsList.size());
@@ -54,14 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Profile pointers Please don't delte without telling me!(confier)
     profile = std::make_shared<Profile>();
     profileWindow = std::make_shared<ProfileWindow>(profile);
-
-    pqxx::work worker (profile->connector);
-    pqxx::result response = worker.exec("SELECT * FROM \"Profiles\"");
-
-    for (int i = 0; i < response.size(); ++i)
-    {
-        qInfo() << "Id: " << response[i][0].c_str() << " Email: " << response[i][1].c_str();
-    }
 
     // Add "Help" menu item
     QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
@@ -332,5 +325,8 @@ void MainWindow::on_SortFilter_textActivated(const QString &arg1)
 void MainWindow::on_FavoriteButton_clicked()
 {
     profileWindow ->show();
-}
 
+}
+//QSettings setting("drumdrum");
+//settings.setValue("id", id);
+//settings.value("id");

@@ -51,7 +51,20 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="RegistereButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>130</y>
+     <width>101</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Register</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Login_Button">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -61,7 +74,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Register</string>
+    <string>Log in</string>
    </property>
   </widget>
  </widget>

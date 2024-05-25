@@ -33,7 +33,7 @@ void Profile::addFavourite(const QModelIndex &index)
 }
 
 pqxx::connection Profile::connecting(){
-    std::string ConnectorStr = "host=localhost port=5432 dbname=postgres user=postgres password = 12345";
+    std::string ConnectorStr = "host=localhost port=5432 dbname=postgres user=postgres password=12345";
     try
     {
         pqxx::connection connector(ConnectorStr.c_str());

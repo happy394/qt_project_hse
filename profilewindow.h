@@ -19,11 +19,15 @@ public:
     ~ProfileWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_RegistereButton_clicked();
+
+    void on_Login_Button_clicked();
+
 
 private:
     Ui::ProfileWindow *ui;
     std::shared_ptr<Profile> profile;
+    bool logIn(QString email, QString password);
 };
 
 #endif // PROFILEWINDOW_H
