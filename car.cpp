@@ -32,8 +32,8 @@ car::~car(){};
 
 QString car::getCarString() const
 {
-    return brand + " " + model + " " + QString::number(price) + " " + QString::number(mileage)
-           + " " + QString::number(age) + " " + country;
+    return brand + " " + model + " " + QString::number(price) + " " + QString::number(mileage) + " "
+           + QString::number(age) + " " + country;
 }
 
 QString car::getCarName() const
@@ -42,29 +42,48 @@ QString car::getCarName() const
 }
 QString car::getCarInfo() const
 {
-    return "Mileage:    " + QString::number(mileage) + '\n' + "Age:    " + QString::number(age) + '\n' +
-           "Fuel:   " + fuel + '\n' + "Transmission type:   " + transmission + '\n' +
-           "Drive type:    " + drive + '\n' +  "Engine capacity:    " + QString::number(engineCapacity) + '\n' +
-           "Horse power:    " + QString::number(engineHp) + '\n' + "Country:    " + country;
+    return "Mileage:    " + QString::number(mileage) + '\n' + "Age:    " + QString::number(age)
+           + '\n' + "Fuel:   " + fuel + '\n' + "Transmission type:   " + transmission + '\n'
+           + "Drive type:    " + drive + '\n'
+           + "Engine capacity:    " + QString::number(engineCapacity) + '\n'
+           + "Horse power:    " + QString::number(engineHp) + '\n' + "Country:    " + country;
 }
 
 QStringList car::getCarList() const
 {
+<<<<<<< HEAD
     QStringList res = {this->brand, this->model, QString::number(this->price), this->city, this->fuel, this->transmission, this->drive,
                        QString::number(this->mileage), this->country, QString::number(this->engineCapacity), QString::number(this->engineHp), QString::number(this->age),QString::number(this->id)};
+=======
+    QStringList res = {this->brand,
+                       this->model,
+                       QString::number(this->price),
+                       this->city,
+                       this->fuel,
+                       this->transmission,
+                       this->drive,
+                       QString::number(this->mileage),
+                       this->country,
+                       QString::number(this->engineCapacity),
+                       QString::number(this->engineHp),
+                       QString::number(this->age)};
+>>>>>>> 554c83b (cleaned code to start remaking offerstable)
     return res;
 }
 
-bool car::operator<(const car& other) const
+bool car::operator<(const car &other) const
 {
     return this->brand < other.brand;
 }
 
-bool car::operator==(const car& other) const
+bool car::operator==(const car &other) const
 {
-    if (this->brand != other.brand || this->model != other.model || this->price != other.price ||this->city != other.city ||
-        this->fuel != other.fuel ||this->transmission != other.transmission ||this->drive != other.drive ||this->mileage != other.mileage ||
-        this->country != other.country ||this->engineCapacity != other.engineCapacity ||this->engineHp != other.engineHp ||this->age != other.age)
+    if (this->brand != other.brand || this->model != other.model || this->price != other.price
+        || this->city != other.city || this->fuel != other.fuel
+        || this->transmission != other.transmission || this->drive != other.drive
+        || this->mileage != other.mileage || this->country != other.country
+        || this->engineCapacity != other.engineCapacity || this->engineHp != other.engineHp
+        || this->age != other.age)
         return false;
     return true;
 }

@@ -1,11 +1,11 @@
 #include "./ui_mainwindow.h"
 #include "mainwindow.h"
-// #include "offerslist.h"
-#include "offerwindow.h"
-#include "guidelinedialog.h"
-#include "car.h"
 #include "aboutdialog.h"
 #include <QMenuBar>
+#include "car.h"
+#include "guidelinedialog.h"
+#include "offerslist.h"
+#include "offerwindow.h"
 #include <qmessagebox.h>
 // #include "profilewindow.h"
 #include <memory>
@@ -27,8 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->OffersList->setColumnCount(13);
     ui->OffersList->setRowCount(offerslist->carsList.size());
     ui->OffersList->setHorizontalHeaderLabels(sortList.sliced(1));
-    for (int i = 0; i < offerslist->carsList.size(); ++i)
-    {
+    for (int i = 0; i < offerslist->carsList.size(); ++i) {
         car currCar = offerslist->carsList[i];
         carInfoList = currCar.getCarList();
         for (int j = 0; j < 13; ++j)
@@ -50,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
     // sort filter
     sortModel->setStringList({"", sortList[3], sortList[8], sortList[12]});
     ui->SortFilter->setModel(sortModel);
-
 
     // Profile pointers Please don't delte without telling me!(confier)
     profile = std::make_shared<Profile>();
@@ -90,7 +88,6 @@ void MainWindow::applyFilter()
     searchInput = ui->SearchBar->text();
 
     // iterate through all cars. find those which are ok with filters
-
     for (int i = 0; i < offerslist->carsList.size(); ++i)
     {
         car currCar = offerslist->carsList[i];
@@ -99,51 +96,37 @@ void MainWindow::applyFilter()
             continue;
         }
 
-        if (minPrice <= currCar.price && currCar.price <= maxPrice
-            && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
-            && minAge <= currCar.age && currCar.age <= maxAge)
-        {
-            if (brand != "All" && model != "All" && model != "")
-            {
-                if (currCar.brand == brand && currCar.model == model)
-                {
+        if (minPrice <= currCar.price && currCar.price <= maxPrice && minMileage <= currCar.mileage
+            && currCar.mileage <= maxMileage && minAge <= currCar.age && currCar.age <= maxAge) {
+            if (brand != "All" && model != "All" && model != "") {
+                if (currCar.brand == brand && currCar.model == model) {
                     ui->OffersList->setRowCount(++counter);
-                    for (int j = 0; j < 12; ++j)
-                    {
+                    for (int j = 0; j < 12; ++j) {
                         offerModel = new QTableWidgetItem;
                         offerModel->setData(Qt::DisplayRole, carInfoList[j]);
-                        ui->OffersList->setItem(counter-1, j, offerModel);
+                        ui->OffersList->setItem(counter - 1, j, offerModel);
                     }
                 }
-            }
-            else if (brand != "All")
-            {
-                if (currCar.brand == brand)
-                {
+            } else if (brand != "All") {
+                if (currCar.brand == brand) {
                     ui->OffersList->setRowCount(++counter);
-                    for (int j = 0; j < 12; ++j)
-                    {
+                    for (int j = 0; j < 12; ++j) {
                         offerModel = new QTableWidgetItem;
                         offerModel->setData(Qt::DisplayRole, carInfoList[j]);
-                        ui->OffersList->setItem(counter-1, j, offerModel);
+                        ui->OffersList->setItem(counter - 1, j, offerModel);
                     }
                 }
-            }
-            else
-            {
+            } else {
                 ui->OffersList->setRowCount(++counter);
-                for (int j = 0; j < 12; ++j)
-                {
+                for (int j = 0; j < 12; ++j) {
                     offerModel = new QTableWidgetItem;
                     offerModel->setData(Qt::DisplayRole, carInfoList[j]);
-                    ui->OffersList->setItem(counter-1, j, offerModel);
+                    ui->OffersList->setItem(counter - 1, j, offerModel);
                 }
             }
         }
     }
 
-    int column = sortList.indexOf(ui->SortFilter->currentText());
-    ui->OffersList->sortItems(column-1);
     ui->OffersList->setHorizontalHeaderLabels(sortList.sliced(1));
 
     // extra filter by search text
@@ -264,7 +247,6 @@ void MainWindow::on_pushButton_clicked()
     // reset dropdown filters
     ui->BrandFilter->setCurrentText("All");
     ui->ModelFilter->clear();
-    ui->SortFilter->setCurrentText("");
 
     // reset boundaries
     ui->PriceMin->clear();
@@ -309,6 +291,7 @@ void MainWindow::on_OffersList_cellDoubleClicked(int row, int column)
     car chosenCar(chosenCarInfo[0], chosenCarInfo[1], chosenCarInfo[2].toInt(), chosenCarInfo[3], chosenCarInfo[4], chosenCarInfo[5],
 chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].toDouble(), chosenCarInfo[10].toInt(), chosenCarInfo[11].toInt(),chosenCarInfo[12].toInt());
 
+
     OfferWindow *w2 = new OfferWindow(profile,chosenCar);
     w2->show();
 }
@@ -340,4 +323,3 @@ void MainWindow::on_checkBox_stateChanged(int arg1)
     onlyFavourites = (arg1!=0);
     applyFilter();
 }
-

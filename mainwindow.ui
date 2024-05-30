@@ -154,7 +154,7 @@
        <bool>false</bool>
       </property>
       <property name="sortingEnabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="wordWrap">
        <bool>false</bool>
@@ -254,9 +254,6 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="7">
-     <widget class="QComboBox" name="HideFilter"/>
-    </item>
     <item row="4" column="1">
      <widget class="QLineEdit" name="PriceMin">
       <property name="enabled">
@@ -355,22 +352,12 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="5">
-     <widget class="QLabel" name="SortLabel">
-      <property name="text">
-       <string>Sort</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="3">
      <widget class="QLabel" name="ModelLabel">
       <property name="text">
        <string>Model</string>
       </property>
      </widget>
-    </item>
-    <item row="2" column="5" colspan="2">
-     <widget class="QComboBox" name="SortFilter"/>
     </item>
     <item row="3" column="5">
      <widget class="QLabel" name="AgeLabel">
@@ -386,6 +373,7 @@
       </property>
      </widget>
     </item>
+<<<<<<< HEAD
     <item row="1" column="7">
      <widget class="QLabel" name="label_7">
       <property name="text">
@@ -418,6 +406,8 @@
       </property>
      </widget>
     </item>
+=======
+>>>>>>> 554c83b (cleaned code to start remaking offerstable)
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">

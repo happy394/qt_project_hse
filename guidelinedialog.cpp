@@ -1,9 +1,9 @@
 #include "guidelinedialog.h"
 #include "ui_guidelinedialog.h"
 
-GuidelineDialog::GuidelineDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::GuidelineDialog)
+GuidelineDialog::GuidelineDialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::GuidelineDialog)
 {
     ui->setupUi(this);
 

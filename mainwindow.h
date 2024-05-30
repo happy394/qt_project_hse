@@ -50,14 +50,16 @@ private slots:
 
     void on_OffersList_cellDoubleClicked(int row, int column);
 
+<<<<<<< HEAD
     void on_SortFilter_textActivated(const QString &arg1);
 
     void on_FavoriteButton_clicked();
 
     void on_checkBox_stateChanged(int arg1);
 
+=======
+>>>>>>> 554c83b (cleaned code to start remaking offerstable)
 private:
-
     Ui::MainWindow *ui;
     offersList *offerslist; // class with offers of used cars
 
@@ -72,8 +74,24 @@ private:
     QStringListModel *modelModel;
     QStringListModel *sortModel;
 
+<<<<<<< HEAD
     QStringList sortList = {"", "brand", "model", "price", "city", "fuel", "transmission", "drive", "mileage",
 "country", "engine capacity", "engine hp", "age","id"};
+=======
+    QStringList sortList = {"",
+                            "brand",
+                            "model",
+                            "price",
+                            "city",
+                            "fuel",
+                            "transmission",
+                            "drive",
+                            "mileage",
+                            "country",
+                            "engine capacity",
+                            "engine hp",
+                            "age"};
+>>>>>>> 554c83b (cleaned code to start remaking offerstable)
 
     QStringList carInfoList;
 

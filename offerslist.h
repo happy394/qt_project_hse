@@ -3,13 +3,12 @@
 
 #include <QAbstractTableModel>
 #include <QCoreApplication>
-#include <qfile.h>
 #include "car.h"
+#include <qfile.h>
 
 struct offersList
 {
 public:
-
     QList<car> carsList;
 
     // dropdown filters

@@ -1,8 +1,8 @@
 #ifndef OFFERWINDOW_H
 #define OFFERWINDOW_H
 
-#include <QWidget>
 #include <QStringListModel>
+#include <QWidget>
 #include "car.h"
 #include "profile.h"
 
