@@ -13,6 +13,7 @@ ProfileWindow::ProfileWindow(std::shared_ptr<Profile> db,QWidget *parent)
     ui->setupUi(this);
     profile->connector.prepare("getData","SELECT email,client_password FROM profiles where email = $1 AND client_password = $2");
     profile->connector.prepare("setData", "INSERT INTO profiles (email,client_password) Values ($1,$2) On Conflict do nothing returning email");
+    profile->connector.prepare("getFavourites", "SELECT car_id FROM favourites WHERE email = $1");
 }
 
 ProfileWindow::~ProfileWindow()
@@ -66,6 +67,11 @@ void ProfileWindow::on_Login_Button_clicked()
         box.setText("Logged in successfully");
         box.setIcon(QMessageBox::Information);
         box.exec();
+        pqxx::work cursor(profile->connector);
+        pqxx::result favourites = cursor.exec_prepared("getFavourites",profile->getEmail().toStdString());
+        for (const auto &car : favourites){
+            profile->addFavourite(car["car_id"].as<int>());
+        }
         this->close();
     }
     else{

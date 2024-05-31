@@ -14,7 +14,7 @@ class Profile
 private:
     QString email;
     QString password;
-    QVector <QModelIndex> favourites;
+    QVector <int> favourites;
 
 public:
     Profile();
@@ -30,7 +30,8 @@ public:
     void setEmail(const QString &newEmail);
     QString getPassword() const;
     void setPassword(const QString &newPassword);
-    void addFavourite (const QModelIndex &index);
+    void addFavourite (int id);
+    bool hasFavourite (int id);
 
 };
 

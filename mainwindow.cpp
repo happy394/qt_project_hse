@@ -24,18 +24,18 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //offers list
-    ui->OffersList->setColumnCount(12);
+    ui->OffersList->setColumnCount(13);
     ui->OffersList->setRowCount(offerslist->carsList.size());
     ui->OffersList->setHorizontalHeaderLabels(sortList.sliced(1));
     for (int i = 0; i < offerslist->carsList.size(); ++i)
     {
         car currCar = offerslist->carsList[i];
         carInfoList = currCar.getCarList();
-        for (int j = 0; j < 12; ++j)
+        for (int j = 0; j < 13; ++j)
         {
             offerModel = new QTableWidgetItem;
             // make int in table for sort
-            if (j == 2 || j == 7 || j == 11)
+            if (j == 2 || j == 7 || j == 11 || j == 12)
                 offerModel->setData(Qt::DisplayRole, carInfoList[j].toInt());
             else
                 offerModel->setData(Qt::DisplayRole, carInfoList[j]);
@@ -90,10 +90,14 @@ void MainWindow::applyFilter()
     searchInput = ui->SearchBar->text();
 
     // iterate through all cars. find those which are ok with filters
+
     for (int i = 0; i < offerslist->carsList.size(); ++i)
     {
         car currCar = offerslist->carsList[i];
         carInfoList = currCar.getCarList();
+        if (onlyFavourites and not( profile->hasFavourite(currCar.id))){
+            continue;
+        }
 
         if (minPrice <= currCar.price && currCar.price <= maxPrice
             && minMileage <= currCar.mileage && currCar.mileage <= maxMileage
@@ -297,15 +301,15 @@ void MainWindow::showAboutDialog()
 void MainWindow::on_OffersList_cellDoubleClicked(int row, int column)
 {
     QStringList chosenCarInfo;
-    for (int i = 0; i < 12; ++i)
+    for (int i = 0; i < 13; ++i)
     {
         chosenCarInfo.push_back(ui->OffersList->item(row, i)->text());
     }
 
     car chosenCar(chosenCarInfo[0], chosenCarInfo[1], chosenCarInfo[2].toInt(), chosenCarInfo[3], chosenCarInfo[4], chosenCarInfo[5],
-chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].toDouble(), chosenCarInfo[10].toInt(), chosenCarInfo[11].toInt());
+chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].toDouble(), chosenCarInfo[10].toInt(), chosenCarInfo[11].toInt(),chosenCarInfo[12].toInt());
 
-    OfferWindow *w2 = new OfferWindow(chosenCar);
+    OfferWindow *w2 = new OfferWindow(profile,chosenCar);
     w2->show();
 }
 
@@ -330,3 +334,10 @@ void MainWindow::on_FavoriteButton_clicked()
 //QSettings setting("drumdrum");
 //settings.setValue("id", id);
 //settings.value("id");
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    onlyFavourites = (arg1!=0);
+    applyFilter();
+}
+

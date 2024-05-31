@@ -37,7 +37,7 @@ offersList::offersList()
         s = ss.readLine();
         buff = s.split(",");
         car currCar = car(buff[1], buff[2], buff[3].toUInt(), buff[4], buff[5], buff[6], buff[7], buff[8].toInt(), buff[9], buff[10].toDouble(),
-                          buff[11].toInt(), buff[12].toShort());
+                          buff[11].toInt(), buff[12].toShort(),buff[0].toInt());
 
         // filling offer list
         this->carsList.append(currCar);

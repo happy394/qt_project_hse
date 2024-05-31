@@ -11,7 +11,8 @@ car::car(const QString &brand,
          const QString &country,
          const double &engineCapacity,
          const qint32 &engineHp,
-         const qint16 &age)
+         const qint16 &age,
+         const int id)
     : brand(brand)
     , model(model)
     , price(price)
@@ -24,6 +25,7 @@ car::car(const QString &brand,
     , engineCapacity(engineCapacity)
     , engineHp(engineHp)
     , age(age)
+    , id(id)
 {}
 
 car::~car(){};
@@ -49,7 +51,7 @@ QString car::getCarInfo() const
 QStringList car::getCarList() const
 {
     QStringList res = {this->brand, this->model, QString::number(this->price), this->city, this->fuel, this->transmission, this->drive,
-QString::number(this->mileage), this->country, QString::number(this->engineCapacity), QString::number(this->engineHp), QString::number(this->age)};
+                       QString::number(this->mileage), this->country, QString::number(this->engineCapacity), QString::number(this->engineHp), QString::number(this->age),QString::number(this->id)};
     return res;
 }
 

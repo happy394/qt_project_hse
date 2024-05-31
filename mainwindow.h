@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void loggedIn (QString);
 
 private slots:
     void on_BrandFilter_textActivated(const QString &arg1);
@@ -53,6 +54,8 @@ private slots:
 
     void on_FavoriteButton_clicked();
 
+    void on_checkBox_stateChanged(int arg1);
+
 private:
 
     Ui::MainWindow *ui;
@@ -61,6 +64,8 @@ private:
     std::shared_ptr<ProfileWindow> profileWindow;
     std::shared_ptr<Profile> profile;
 
+
+
     // models for app objects
     QTableWidgetItem *offerModel;
     QStringListModel *brandModel;
@@ -68,7 +73,7 @@ private:
     QStringListModel *sortModel;
 
     QStringList sortList = {"", "brand", "model", "price", "city", "fuel", "transmission", "drive", "mileage",
-"country", "engine capacity", "engine hp", "age"};
+"country", "engine capacity", "engine hp", "age","id"};
 
     QStringList carInfoList;
 
@@ -82,6 +87,7 @@ private:
     QString searchInput = "";
 
     void applyFilter();
+    bool onlyFavourites = false;
 };
 
 #endif // MAINWINDOW_H

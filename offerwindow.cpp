@@ -1,9 +1,12 @@
 #include "offerwindow.h"
 #include "ui_offerwindow.h"
+#include <QMessageBox>
 
-OfferWindow::OfferWindow(car currCar, QWidget *parent)
+
+OfferWindow::OfferWindow(std::shared_ptr<Profile> profile, car currCar, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::OfferWindow)
+    , profile (profile)
     , currCar(currCar)
     , carInfoModel(new QStringListModel)
     , carName(new QStringListModel)
@@ -13,9 +16,27 @@ OfferWindow::OfferWindow(car currCar, QWidget *parent)
     carName->setStringList({currCar.getCarName()});
     ui->CarInfo->setModel(carInfoModel);
     ui->CarName->setModel(carName);
+    profile->connector.prepare("setFavourite", "INSERT INTO favourites (email,car_id) Values ($1,$2) On Conflict do nothing returning email");
 }
+
 
 OfferWindow::~OfferWindow()
 {
     delete ui;
 }
+
+void OfferWindow::on_FavoriteButton_clicked()
+{
+    if (profile->getEmail() == ""){
+        QMessageBox box;
+        box.setText("Please log in into account");
+        box.setIcon(QMessageBox::Critical);
+        box.exec();
+    }
+    else {
+    profile->addFavourite(currCar.id);
+    pqxx::work cursor(profile->connector);
+    pqxx::result res = cursor.exec_prepared("setFavourite",profile->getEmail().toStdString(),currCar.id);
+    cursor.commit();}
+}
+

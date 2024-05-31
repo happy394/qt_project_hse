@@ -2,6 +2,7 @@
 #include "profile.h"
 
 
+
 //Please don't delte without telling me!(confier)
 
 Profile::Profile() {}
@@ -27,11 +28,14 @@ void Profile::setPassword(const QString &newPassword)
     password = newPassword;
 }
 
-void Profile::addFavourite(const QModelIndex &index)
+void Profile::addFavourite(int id)
 {
-    favourites.push_back(index);
+    favourites.push_back(id);
 }
+bool Profile::hasFavourite(int id){
+    return(favourites.contains(id));
 
+}
 pqxx::connection Profile::connecting(){
     std::string ConnectorStr = "host=localhost port=5432 dbname=postgres user=postgres password=12345";
     try

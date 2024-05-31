@@ -7,6 +7,7 @@
 class car
 {
 public:
+    int id;
     QString brand;
     QString model;
     int price;
@@ -20,7 +21,8 @@ public:
     int engineHp;
     int age;
 
-    car(const QString &brand = "",
+    car(
+        const QString &brand = "",
         const QString &model = "",
         const qint64 &price = 0,
         const QString &city = "",
@@ -31,7 +33,8 @@ public:
         const QString &country = "",
         const double &engineCapacity = 0,
         const qint32 &engineHp = 0,
-        const qint16 &age = 0);
+        const qint16 &age = 0,
+        const int id  = 0);
     ~car();
 
     QString getCarString() const;
