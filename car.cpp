@@ -51,23 +51,8 @@ QString car::getCarInfo() const
 
 QStringList car::getCarList() const
 {
-<<<<<<< HEAD
     QStringList res = {this->brand, this->model, QString::number(this->price), this->city, this->fuel, this->transmission, this->drive,
                        QString::number(this->mileage), this->country, QString::number(this->engineCapacity), QString::number(this->engineHp), QString::number(this->age),QString::number(this->id)};
-=======
-    QStringList res = {this->brand,
-                       this->model,
-                       QString::number(this->price),
-                       this->city,
-                       this->fuel,
-                       this->transmission,
-                       this->drive,
-                       QString::number(this->mileage),
-                       this->country,
-                       QString::number(this->engineCapacity),
-                       QString::number(this->engineHp),
-                       QString::number(this->age)};
->>>>>>> 554c83b (cleaned code to start remaking offerstable)
     return res;
 }
 

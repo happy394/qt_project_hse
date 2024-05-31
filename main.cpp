@@ -1,12 +1,9 @@
 #include <QApplication>
 #include <QSettings>
-<<<<<<< HEAD
 #include <QMainWindow>
 #include <QIcon>
-=======
 #include "datapath.h"
 #include "mainwindow.h"
->>>>>>> 554c83b (cleaned code to start remaking offerstable)
 
 void initialCheck(QSettings &s)
 {
@@ -23,8 +20,7 @@ int main(int argc, char *argv[])
     std::condition_variable cv;
     QSettings settings("drumdrum");
     // Set the application icon
-    a.setWindowIcon(QIcon(":/icons/appicon.ico"));
-    qInfo() << settings.fileName();
+
     initialCheck(settings);
     if (settings.value("path_amount").toInt() == 0) {
         dataPath d;

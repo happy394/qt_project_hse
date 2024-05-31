@@ -9,8 +9,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(MACOSX_BUNDLE_ICON_FILE planet.ico)
-set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/resources/planet.ico")
+# app icon preparation
+set(MACOSX_BUNDLE_ICON_FILE appico.ico)
+set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/resources/appico.ico")
 set_source_files_properties(${app_icon_macos} PROPERTIES
            MACOSX_PACKAGE_LOCATION "Resources")
 
@@ -21,14 +22,13 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        ${app_icon_macos}
+        ${app_icon_macos} # adding app icon path to execute in app
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(qt_project_hse
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        offerslist.h offerslist.cpp
         car.h car.cpp
         offerwindow.h offerwindow.cpp offerwindow.ui
         guidelinedialog.h guidelinedialog.cpp guidelinedialog.ui
@@ -36,7 +36,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         profile.h profile.cpp
         profilewindow.h profilewindow.cpp profilewindow.ui
         aboutdialog.h aboutdialog.cpp aboutdialog.ui
-        resources.qrc
+        offersmodel.h offersmodel.cpp
+        proxymodel.h proxymodel.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET qt_project_hse APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
