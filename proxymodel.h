@@ -3,6 +3,7 @@
 
 #include <QSortFilterProxyModel>
 #include <QString>
+#include "profile.h"
 
 class ProxyModel : public QSortFilterProxyModel {
     Q_OBJECT
@@ -13,6 +14,7 @@ public:
     void setBrand(const QString &value);
     void setModel(const QString &value);
     void setSearch(const QString &value);
+    void setFlag(bool value1, std::shared_ptr<Profile> &value2);
 
     bool searchCheck(int sourceRow, const QModelIndex &sourceParent) const;
 
@@ -32,6 +34,8 @@ private:
     QString _brand;
     QString _model;
     QString _search;
+    bool favourites;
+    QVector <int> favouritesVector;
 
     int _minPrice = 0;
     long int _maxPrice = 10000000000;

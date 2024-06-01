@@ -180,7 +180,6 @@ chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].t
 void MainWindow::on_FavoriteButton_clicked()
 {
     profileWindow ->show();
-
 }
 
 // hints for, confier ->
@@ -190,6 +189,7 @@ void MainWindow::on_FavoriteButton_clicked()
 
 void MainWindow::on_checkBox_stateChanged(int arg1)
 {
+    on_pushButton_clicked();
     onlyFavourites = (arg1!=0);
-
+    proxyModel->setFlag(onlyFavourites, profile);
 }

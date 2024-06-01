@@ -1,8 +1,5 @@
 #include <iostream>
 #include "profile.h"
-
-
-
 //Please don't delte without telling me!(confier)
 
 Profile::Profile() {}
@@ -32,10 +29,11 @@ void Profile::addFavourite(int id)
 {
     favourites.push_back(id);
 }
-bool Profile::hasFavourite(int id){
-    return(favourites.contains(id));
 
+bool Profile::hasFavourite(int id){
+    return favourites.contains(id);
 }
+
 pqxx::connection Profile::connecting(){
     std::string ConnectorStr = "host=localhost port=5432 dbname=qt_hse_project user=postgres password=bokuwabakadesu";
     try
@@ -47,4 +45,9 @@ pqxx::connection Profile::connecting(){
     {
         std::cerr << e.what() << std::endl;
     }
+}
+
+QVector <int> Profile::getFavourites()
+{
+    return favourites;
 }

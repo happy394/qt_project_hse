@@ -20,7 +20,6 @@ public:
     Profile();
     ~Profile();
 
-    //
     // Don't touch!
     pqxx::connection connector = connecting();
     pqxx::connection connecting();
@@ -32,6 +31,7 @@ public:
     void setPassword(const QString &newPassword);
     void addFavourite (int id);
     bool hasFavourite (int id);
+    QVector <int> getFavourites();
 
 };
 

@@ -64,15 +64,11 @@ private:
     std::shared_ptr<ProfileWindow> profileWindow;
     std::shared_ptr<Profile> profile;
 
-
-
     // models for app objects
     QTableWidgetItem *offerModel;
     QStringListModel *brandModel;
     QStringListModel *modelModel;
     QStringListModel *sortModel;
-
-    QStringList carInfoList;
 
     QString searchInput = "";
 
