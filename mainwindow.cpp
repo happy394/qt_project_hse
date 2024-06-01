@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     proxyModel->setSourceModel(offersModel);
     proxyModel->sort(0);
     ui->tableView->setModel(proxyModel);
+    ui->tableView->hideColumn(12);
 
     // dropdown filters
     brandModel->setStringList(offersModel->brand);
@@ -159,13 +160,6 @@ void MainWindow::showAboutDialog()
     aboutDialog.exec();
 }
 
-// void MainWindow::on_OffersList_cellDoubleClicked(int row, int column)
-// {
-//     QStringList chosenCarInfo;
-//     for (int i = 0; i < 13; ++i)
-//     {
-//         chosenCarInfo.push_back(ui->OffersList->item(row, i)->text());
-
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
     QStringList chosenCarInfo;
@@ -178,8 +172,7 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
     car chosenCar(chosenCarInfo[0], chosenCarInfo[1], chosenCarInfo[2].toInt(), chosenCarInfo[3], chosenCarInfo[4], chosenCarInfo[5],
 chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].toDouble(), chosenCarInfo[10].toInt(), chosenCarInfo[11].toInt(),chosenCarInfo[12].toInt());
 
-
-    OfferWindow *w2 = new OfferWindow(profile,chosenCar);
+    OfferWindow *w2 = new OfferWindow(profile, chosenCar);
     w2->show();
 }
 
@@ -189,6 +182,8 @@ void MainWindow::on_FavoriteButton_clicked()
     profileWindow ->show();
 
 }
+
+// hints for, confier ->
 //QSettings setting("drumdrum");
 //settings.setValue("id", id);
 //settings.value("id");
@@ -196,5 +191,5 @@ void MainWindow::on_FavoriteButton_clicked()
 void MainWindow::on_checkBox_stateChanged(int arg1)
 {
     onlyFavourites = (arg1!=0);
-    // applyFilter();
+
 }

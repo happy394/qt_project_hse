@@ -3,8 +3,6 @@
 #include <QDebug>
 #include <QMessageBox>
 
-
-
 ProfileWindow::ProfileWindow(std::shared_ptr<Profile> db,QWidget *parent)
     : QDialog(parent)
     , profile(db)
@@ -20,8 +18,6 @@ ProfileWindow::~ProfileWindow()
 {
     delete ui;
 }
-
-
 
 void ProfileWindow::on_RegistereButton_clicked()
 {   QMessageBox box;
@@ -79,7 +75,6 @@ void ProfileWindow::on_Login_Button_clicked()
         box.setIcon(QMessageBox::Critical);
         box.exec();
     }
-
 }
 
 

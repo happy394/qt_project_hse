@@ -34,32 +34,19 @@ offersmodel::offersmodel(QObject *parent)
     file.open(QFile::ReadOnly | QFile::Text);
     QTextStream ss(&file);
     QString s = ss.readLine(); // avoids header line
-    header = s.split(",").sliced(1);
+    QStringList temp = {s.split(",").sliced(1)};
+    temp += "id";
+    header = temp;
     QStringList buff;
 
     while (!ss.atEnd()) {
         s = ss.readLine();
         buff = s.split(",");
-<<<<<<< HEAD
         car currCar = car(buff[1], buff[2], buff[3].toUInt(), buff[4], buff[5], buff[6], buff[7], buff[8].toInt(), buff[9], buff[10].toDouble(),
-                          buff[11].toInt(), buff[12].toShort(),buff[0].toInt());
-=======
-        car currCar = car(buff[1],
-                          buff[2],
-                          buff[3].toUInt(),
-                          buff[4],
-                          buff[5],
-                          buff[6],
-                          buff[7],
-                          buff[8].toInt(),
-                          buff[9],
-                          buff[10].toDouble(),
-                          buff[11].toInt(),
-                          buff[12].toShort());
->>>>>>> 554c83b (cleaned code to start remaking offerstable)
+                          buff[11].toInt(), buff[12].toShort(), buff[0].toInt());
 
         // filling offer list
-        this->carsList.append({buff[1], buff[2], buff[3].toUInt(), buff[4], buff[5], buff[6], buff[7], buff[8].toInt(), buff[9], buff[10].toDouble(), buff[11].toInt(), buff[12].toShort()});
+        this->carsList.append({buff[1], buff[2], buff[3].toUInt(), buff[4], buff[5], buff[6], buff[7], buff[8].toInt(), buff[9], buff[10].toDouble(), buff[11].toInt(), buff[12].toShort(), buff[0].toInt()});
 
         // sets for filling filters
         this->brandSet.insert(currCar.brand);
@@ -115,7 +102,7 @@ int offersmodel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return 12;
+    return 13;
 }
 
 QVariant offersmodel::data(const QModelIndex &index, int role) const

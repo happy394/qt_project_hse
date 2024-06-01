@@ -7,9 +7,10 @@ bool ProxyModel::searchCheck(int sourceRow, const QModelIndex &sourceParent) con
     for (int i = 0; i < 13; ++i)
     {
         QModelIndex index = sourceModel()->index(sourceRow, i, sourceParent);
+        // qInfo() << sourceModel()->data(index).toString();
         if (sourceModel()->data(index).toString() == _search.toLower() ||
             sourceModel()->data(index).toString() == _search ||
-            sourceModel()->data(index).toString() == _search[0].toUpper() + _search.sliced(1))
+            sourceModel()->data(index).toString() == _search.sliced(1))
             return true;
     }
     return false;
@@ -25,8 +26,7 @@ bool ProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent
 
     if (!_search.isEmpty())
     {
-        qInfo() << _search;
-        if (_brand != "All" && !_brand.isEmpty() && !_model.isEmpty() && _model != "All" && searchCheck(sourceRow, sourceParent))
+        if (_brand != "All" && !_brand.isEmpty() && !_model.isEmpty() && _model != "All")
             return (sourceModel()->data(indexModel).toString() == _model &&
                     sourceModel()->data(indexBrand).toString() == _brand &&
                     sourceModel()->data(indexPrice).toInt() < _maxPrice &&
@@ -34,23 +34,26 @@ bool ProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent
                     sourceModel()->data(indexMileage).toInt() < _maxMileage &&
                     sourceModel()->data(indexMileage).toInt() > _minMileage &&
                     sourceModel()->data(indexAge).toInt() < _maxAge &&
-                    sourceModel()->data(indexAge).toInt() > _minAge);
-        else if (_brand != "All" && !_brand.isEmpty() && (_model.isEmpty() || _model == "All"  && searchCheck(sourceRow, sourceParent)))
+                    sourceModel()->data(indexAge).toInt() > _minAge &&
+                    searchCheck(sourceRow, sourceParent));
+        else if (_brand != "All" && !_brand.isEmpty() && (_model.isEmpty() || _model == "All"))
             return (sourceModel()->data(indexBrand).toString() == _brand &&
                     sourceModel()->data(indexPrice).toInt() < _maxPrice &&
                     sourceModel()->data(indexPrice).toInt() > _minPrice &&
                     sourceModel()->data(indexMileage).toInt() < _maxMileage &&
                     sourceModel()->data(indexMileage).toInt() > _minMileage &&
                     sourceModel()->data(indexAge).toInt() < _maxAge &&
-                    sourceModel()->data(indexAge).toInt() > _minAge);
-        else if (searchCheck(sourceRow, sourceParent))
+                    sourceModel()->data(indexAge).toInt() > _minAge &&
+                    searchCheck(sourceRow, sourceParent));
+        else
         {
             return (sourceModel()->data(indexPrice).toInt() <= _maxPrice &&
                     sourceModel()->data(indexPrice).toInt() >= _minPrice &&
                     sourceModel()->data(indexMileage).toInt() <= _maxMileage &&
                     sourceModel()->data(indexMileage).toInt() >= _minMileage &&
                     sourceModel()->data(indexAge).toInt() <= _maxAge &&
-                    sourceModel()->data(indexAge).toInt() >= _minAge);
+                    sourceModel()->data(indexAge).toInt() >= _minAge &&
+                    searchCheck(sourceRow, sourceParent));
         }
     }
     else

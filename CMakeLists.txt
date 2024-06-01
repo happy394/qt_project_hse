@@ -63,7 +63,7 @@ endif()
 # pkg_check_modules(LIBPQ libpq)
 
 # target_include_directories(qt_project_hse PRIVATE ${LIBPQXX_INCLUDE_DIRS} ${LIBPQ_INCLUDE_DIRS})
-target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /usr/local/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib)
+target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /opt/homebrew/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib)
 # target_link_options(qt_project_hse PUBLIC ${LIBPQXX_LDFLAGS})
 # target_link_options(qt_project_hse PUBLIC ${LIBPQ_LDFLAGS})
 

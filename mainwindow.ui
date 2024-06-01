@@ -22,135 +22,10 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Min</string>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="3">
      <widget class="QLabel" name="MileageLabel">
       <property name="text">
        <string>Mileage</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="5">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Min</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="5">
-     <widget class="QLabel" name="AgeLabel">
-      <property name="text">
-       <string>Age</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Max</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="4">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Max</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Min</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="8">
-     <layout class="QVBoxLayout" name="verticalLayout_6">
-      <item>
-       <layout class="QHBoxLayout" name="ExtraButtons">
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QPushButton" name="FavoriteButton">
-          <property name="text">
-           <string>Fav</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="1" colspan="7">
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <layout class="QHBoxLayout" name="Search">
-        <item>
-         <widget class="QLineEdit" name="SearchBar"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="SearchButton">
-          <property name="text">
-           <string>Search</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="4" column="6" colspan="2">
-     <widget class="QLineEdit" name="AgeMax">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>60</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>1000</number>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="4">
-     <widget class="QLineEdit" name="MileageMax">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>60</width>
-        <height>30</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="maxLength">
-       <number>10</number>
       </property>
      </widget>
     </item>
@@ -191,6 +66,13 @@
       </property>
      </widget>
     </item>
+    <item row="6" column="6">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Reset</string>
+      </property>
+     </widget>
+    </item>
     <item row="4" column="3">
      <widget class="QLineEdit" name="MileageMin">
       <property name="enabled">
@@ -225,6 +107,184 @@
       </property>
       <property name="maxLength">
        <number>10</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="2">
+     <widget class="QComboBox" name="BrandFilter">
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="6">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="ModelLabel">
+      <property name="text">
+       <string>Model</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QLineEdit" name="PriceMax">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>9</number>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="BrandLabel">
+      <property name="text">
+       <string>Brand</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="6" colspan="2">
+     <widget class="QLineEdit" name="AgeMax">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>60</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>1000</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Min</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Max</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="9">
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <layout class="QHBoxLayout" name="ExtraButtons">
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="FavoriteButton">
+          <property name="text">
+           <string>Fav</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="5">
+     <widget class="QLabel" name="AgeLabel">
+      <property name="text">
+       <string>Age</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="7">
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QHBoxLayout" name="Search">
+        <item>
+         <widget class="QLineEdit" name="SearchBar"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="SearchButton">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="7" column="0" colspan="10">
+     <widget class="QTableView" name="tableView">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
+    <item row="2" column="3" colspan="2">
+     <widget class="QComboBox" name="ModelFilter"/>
+    </item>
+    <item row="5" column="2">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Max</string>
       </property>
      </widget>
     </item>
@@ -268,44 +328,8 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="0" colspan="9">
-     <widget class="QTableView" name="tableView">
-      <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="showGrid">
-       <bool>false</bool>
-      </property>
-      <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLabel" name="ModelLabel">
-      <property name="text">
-       <string>Model</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="6">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Reset</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QLineEdit" name="PriceMax">
+    <item row="4" column="4">
+     <widget class="QLineEdit" name="MileageMax">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -322,36 +346,19 @@
        <string/>
       </property>
       <property name="maxLength">
-       <number>9</number>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="6">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Max</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="BrandLabel">
-      <property name="text">
-       <string>Brand</string>
+       <number>10</number>
       </property>
      </widget>
     </item>
     <item row="8" column="0">
      <layout class="QHBoxLayout" name="Offers"/>
     </item>
-    <item row="2" column="1" colspan="2">
-     <widget class="QComboBox" name="BrandFilter">
-      <property name="frame">
-       <bool>true</bool>
+    <item row="5" column="7">
+     <widget class="QCheckBox" name="checkBox">
+      <property name="text">
+       <string>CheckBox</string>
       </property>
      </widget>
-    </item>
-    <item row="2" column="3" colspan="2">
-     <widget class="QComboBox" name="ModelFilter"/>
     </item>
    </layout>
   </widget>
