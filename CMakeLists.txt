@@ -17,6 +17,8 @@ set_source_files_properties(${app_icon_macos} PROPERTIES
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -57,13 +59,7 @@ else()
     endif()
 endif()
 
-
-# find_package(PkgConfig REQUIRED)
-# pkg_check_modules(LIBPQXX libpqxx)
-# pkg_check_modules(LIBPQ libpq)
-
-# target_include_directories(qt_project_hse PRIVATE ${LIBPQXX_INCLUDE_DIRS} ${LIBPQ_INCLUDE_DIRS})
-target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /opt/homebrew/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib)
+target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /opt/homebrew/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib Qt6::Sql)
 # target_link_options(qt_project_hse PUBLIC ${LIBPQXX_LDFLAGS})
 # target_link_options(qt_project_hse PUBLIC ${LIBPQ_LDFLAGS})
 

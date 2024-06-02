@@ -16,7 +16,8 @@ OfferWindow::OfferWindow(std::shared_ptr<Profile> profile, car currCar, QWidget 
     carName->setStringList({currCar.getCarName()});
     ui->CarInfo->setModel(carInfoModel);
     ui->CarName->setModel(carName);
-    profile->connector.prepare("setFavourite", "INSERT INTO favourites (email,car_id) Values ($1,$2) On Conflict do nothing returning email");
+    // profile->connector.prepare("setFavourite", "INSERT INTO favourites (email,car_id) Values ($1,$2) On Conflict do nothing returning email");
+
 }
 
 
@@ -35,8 +36,15 @@ void OfferWindow::on_FavoriteButton_clicked()
     }
     else {
     profile->addFavourite(currCar.id);
-    pqxx::work cursor(profile->connector);
+    QSqlQuery query;
+    query.prepare("INSERT INTO favourites (email,car_id) Values (:email, :car_id)");
+    query.bindValue(":email", profile->getEmail());
+    query.bindValue(":car_id", currCar.id);
+    query.exec();
+    profile->db.commit();
+    /*pqxx::work cursor(profile->connector);
     pqxx::result res = cursor.exec_prepared("setFavourite",profile->getEmail().toStdString(),currCar.id);
-    cursor.commit();}
+    cursor.commit();*/
+    }
 }
 
