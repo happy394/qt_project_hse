@@ -21,6 +21,7 @@ public:
 private slots:
     void on_FavoriteButton_clicked();
 
+
 private:
     std::shared_ptr<Profile> profile;
     Ui::OfferWindow *ui;

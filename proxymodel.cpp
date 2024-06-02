@@ -41,7 +41,7 @@ bool ProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent
                         sourceModel()->data(indexAge).toInt() < _maxAge &&
                         sourceModel()->data(indexAge).toInt() > _minAge &&
                         searchCheck(sourceRow, sourceParent));
-            else if (_brand != "All" && !_brand.isEmpty() && (_model.isEmpty() || _model == "All"))
+            else if (_brand != "All" && !_brand.isEmpty() and (_model.isEmpty() || _model == "All"))
                 return (sourceModel()->data(indexBrand).toString() == _brand &&
                         sourceModel()->data(indexPrice).toInt() < _maxPrice &&
                         sourceModel()->data(indexPrice).toInt() > _minPrice &&
@@ -84,7 +84,7 @@ bool ProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent
             {
                 return (sourceModel()->data(indexPrice).toInt() <= _maxPrice &&
                         sourceModel()->data(indexPrice).toInt() >= _minPrice &&
-                        sourceModel()->data(indexMileage).toInt() <= _maxMileage &&
+                        sourceModel()->data(indexMileage).toInt() <= _maxMileage and
                         sourceModel()->data(indexMileage).toInt() >= _minMileage &&
                         sourceModel()->data(indexAge).toInt() <= _maxAge &&
                         sourceModel()->data(indexAge).toInt() >= _minAge);

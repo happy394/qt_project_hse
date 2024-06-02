@@ -204,7 +204,7 @@ void MainWindow::on_ResetButton_clicked()
     // self-made func to reset all filters in proxy model
     proxyModel->reset();
 
-    ui->FavouritesBox->setCheckState(Qt::Unchecked);
+
 
     ui->PriceMin->clear();
     ui->PriceMax->clear();
@@ -257,25 +257,42 @@ void MainWindow::on_ProfileButton_clicked()
         QMessageBox::information(this, "Logged in", "You are already logged in");
 }
 
-void MainWindow::on_FavouritesBox_stateChanged(int arg1)
+
+
+void MainWindow::on_FavouritesBox_clicked()
 {
-    if (arg1 == 2)
-    {
+
         if (profile->getEmail().isNull())
         {
-            ui->FavouritesBox->setCheckState(Qt::Unchecked);
+
             QMessageBox::information(this, "Not logged in", "You should be logged in into account");
         }
         else
         {
             on_ResetButton_clicked(); // resetting previous filters
-            onlyFavourites = (arg1!=0);
+
             // ui->FavouritesBox->setCheckState(Qt::Checked); // how does this line crash whole app???
-            proxyModel->setFlag(onlyFavourites, profile);
+            proxyModel->setFlag(true, profile);
         }
-    }
-    else
-    {
-        proxyModel->resetFavourites();
-    }
+
+
 }
+// {
+//     if (profile->getEmail().isNull())
+//     {
+
+//         QMessageBox::information(this, "Not logged in", "You should be logged in into account");
+//     }
+//     else
+//     {
+//         on_ResetButton_clicked(); // resetting previous filters
+//         onlyFavourites = (arg1!=0);
+//         // ui->FavouritesBox->setCheckState(Qt::Checked); // how does this line crash whole app???
+//         proxyModel->setFlag(onlyFavourites, profile);
+//     }
+// }
+// else
+// {
+//     proxyModel->resetFavourites();
+// }
+

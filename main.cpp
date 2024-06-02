@@ -19,8 +19,7 @@ int main(int argc, char *argv[])
     std::mutex mtx;
     std::condition_variable cv;
     QSettings settings("drumdrum");
-    // settings.setValue("id", "-1");
-    qInfo() << settings.value("id");
+    // settings.setValue("id", "-1")
     // Set the application icon
 
     initialCheck(settings);

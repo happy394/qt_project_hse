@@ -53,7 +53,7 @@ private slots:
 
     void on_ProfileButton_clicked();
 
-    void on_FavouritesBox_stateChanged(int arg1);
+    void on_FavouritesBox_clicked();
 
 private:
     Ui::MainWindow *ui;
