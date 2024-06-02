@@ -26,6 +26,7 @@ public:
     void setMaxAge(const int &value);
 
     void reset();
+    void resetFavourites();
 
 protected:
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
@@ -34,8 +35,8 @@ private:
     QString _brand;
     QString _model;
     QString _search;
-    bool favourites;
-    QVector <int> favouritesVector;
+    bool _favourites;
+    QSet <int> _favouritesSet;
 
     int _minPrice = 0;
     long int _maxPrice = 10000000000;

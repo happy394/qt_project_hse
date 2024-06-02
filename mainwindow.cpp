@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "aboutdialog.h"
 #include <QMenuBar>
+#include <QSettings>
 #include "car.h"
 #include "guidelinedialog.h"
 #include "offerwindow.h"
@@ -9,6 +10,7 @@
 #include <qmessagebox.h>
 #include "profilewindow.h"
 #include <memory>
+#include <QSqlError>
 #include "profile.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -36,6 +38,65 @@ MainWindow::MainWindow(QWidget *parent)
     profile = std::make_shared<Profile>();
     profileWindow = std::make_shared<ProfileWindow>(profile);
 
+    QSettings settings("drumdrum");
+    if (settings.value("id") != "-1")
+    {
+        QSqlQuery query(profile->db);
+        if (profile->db.isOpen())
+        {
+            if (query.prepare("SELECT email FROM profiles WHERE email = :email"))
+            {
+                query.bindValue(":email", settings.value("id").toString());
+                if (query.exec())
+                {
+                    query.first();
+                    profile->setEmail(query.value(0).toString());
+                }
+                else
+                {
+                    qDebug() << "Query did not execute due to: " << query.lastError().text();
+                    QMessageBox::information(this, "Query did not execute", "Not successful executing the query");
+                }
+            }
+            else
+                qDebug() << "Query not prepared due to the following error: " << query.lastError().text();
+        }
+        else
+        {
+            qDebug() << "Database not opened due to: " << profile->db.lastError().text();
+            QMessageBox::information(this, "Database not open", "Not opened successfully");
+        }
+        QSqlQuery query2(profile->db);
+        if (profile->db.isOpen())
+        {
+            if (query2.prepare("SELECT car_id FROM favourites WHERE email = :email"))
+            {
+                query2.bindValue(":email", profile->getEmail());
+                if (query2.exec())
+                {
+                    while(query2.next())
+                    {
+                        profile->addFavourite(query2.value(0).toInt()); // 0 because of only car_id column was executed
+                    }
+                }
+                else
+                {
+                    qDebug() << "Query did not execute due to: " << query2.lastError().text();
+                    QMessageBox::information(this, "Query did not execute", "Not successful executing the query");
+                }
+            }
+            else
+            {
+                qDebug() << "Query not prepared due to the following error: " << query2.lastError().text();
+            }
+        }
+        else
+        {
+            qDebug() << "Database not opened due to: " << profile->db.lastError().text();
+            QMessageBox::information(this, "Database not open", "Not opened successfully");
+        }
+    }
+
     // Add "Help" menu item
     QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
     QAction *helpAction = new QAction(tr("Open Guideline"), this);
@@ -51,6 +112,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    QSettings settings("drumdrum");
+    settings.setValue("id", "-1");
+    qInfo() << settings.value("id");
     delete ui;
     delete offerModel;
     delete brandModel;
@@ -135,10 +199,19 @@ void MainWindow::on_SearchButton_clicked()
     proxyModel->setSearch(ui->SearchBar->text());
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_ResetButton_clicked()
 {
     // self-made func to reset all filters in proxy model
     proxyModel->reset();
+
+    ui->FavouritesBox->setCheckState(Qt::Unchecked);
+
+    ui->PriceMin->clear();
+    ui->PriceMax->clear();
+    ui->MileageMin->clear();
+    ui->MileageMax->clear();
+    ui->AgeMin->clear();
+    ui->AgeMax->clear();
 
     // reset dropdown filters
     ui->BrandFilter->setCurrentText("All");
@@ -165,9 +238,7 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
     QStringList chosenCarInfo;
     QList<QModelIndex> indexes = ui->tableView->selectionModel()->selectedIndexes();
     for (QModelIndex j: indexes)
-    {
         chosenCarInfo.push_back(j.data().toString());
-    }
 
     car chosenCar(chosenCarInfo[0], chosenCarInfo[1], chosenCarInfo[2].toInt(), chosenCarInfo[3], chosenCarInfo[4], chosenCarInfo[5],
 chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].toDouble(), chosenCarInfo[10].toInt(), chosenCarInfo[11].toInt(),chosenCarInfo[12].toInt());
@@ -177,19 +248,34 @@ chosenCarInfo[6], chosenCarInfo[7].toInt(), chosenCarInfo[8], chosenCarInfo[9].t
 }
 
 //Profile window Please don't delte without telling me!(confier)
-void MainWindow::on_FavoriteButton_clicked()
+void MainWindow::on_ProfileButton_clicked()
 {
-    profileWindow ->show();
+    QSettings settings("drumdrum");
+    if (settings.value("id") == "-1")
+        profileWindow->show();
+    else
+        QMessageBox::information(this, "Logged in", "You are already logged in");
 }
 
-// hints for, confier ->
-//QSettings setting("drumdrum");
-//settings.setValue("id", id);
-//settings.value("id");
-
-void MainWindow::on_checkBox_stateChanged(int arg1)
+void MainWindow::on_FavouritesBox_stateChanged(int arg1)
 {
-    on_pushButton_clicked();
-    onlyFavourites = (arg1!=0);
-    proxyModel->setFlag(onlyFavourites, profile);
+    if (arg1 == 2)
+    {
+        if (profile->getEmail().isNull())
+        {
+            ui->FavouritesBox->setCheckState(Qt::Unchecked);
+            QMessageBox::information(this, "Not logged in", "You should be logged in into account");
+        }
+        else
+        {
+            on_ResetButton_clicked(); // resetting previous filters
+            onlyFavourites = (arg1!=0);
+            // ui->FavouritesBox->setCheckState(Qt::Checked); // how does this line crash whole app???
+            proxyModel->setFlag(onlyFavourites, profile);
+        }
+    }
+    else
+    {
+        proxyModel->resetFavourites();
+    }
 }

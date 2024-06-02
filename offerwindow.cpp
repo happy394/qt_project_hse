@@ -1,6 +1,7 @@
 #include "offerwindow.h"
 #include "ui_offerwindow.h"
 #include <QMessageBox>
+#include <QSqlError>
 
 
 OfferWindow::OfferWindow(std::shared_ptr<Profile> profile, car currCar, QWidget *parent)
@@ -16,8 +17,7 @@ OfferWindow::OfferWindow(std::shared_ptr<Profile> profile, car currCar, QWidget 
     carName->setStringList({currCar.getCarName()});
     ui->CarInfo->setModel(carInfoModel);
     ui->CarName->setModel(carName);
-    // profile->connector.prepare("setFavourite", "INSERT INTO favourites (email,car_id) Values ($1,$2) On Conflict do nothing returning email");
-
+    // profile->connector.prepare("setFavourite", "INSERT INTO _favourites (email,car_id) Values ($1,$2) On Conflict do nothing returning email");
 }
 
 
@@ -29,22 +29,54 @@ OfferWindow::~OfferWindow()
 void OfferWindow::on_FavoriteButton_clicked()
 {
     if (profile->getEmail() == ""){
-        QMessageBox box;
-        box.setText("Please log in into account");
-        box.setIcon(QMessageBox::Critical);
-        box.exec();
+        QMessageBox::critical(this, "Not logged in", "Please log in into account");
+        // QMessageBox box;
+        // box.setText("Please log in into account");
+        // box.setIcon(QMessageBox::Critical);
+        // box.exec();
     }
     else {
-    profile->addFavourite(currCar.id);
-    QSqlQuery query;
-    query.prepare("INSERT INTO favourites (email,car_id) Values (:email, :car_id)");
-    query.bindValue(":email", profile->getEmail());
-    query.bindValue(":car_id", currCar.id);
-    query.exec();
-    profile->db.commit();
-    /*pqxx::work cursor(profile->connector);
-    pqxx::result res = cursor.exec_prepared("setFavourite",profile->getEmail().toStdString(),currCar.id);
-    cursor.commit();*/
+        if (profile->getFavourites().contains(currCar.id))
+        {
+            QMessageBox::critical(this, "Duplicate data", "This car is already in your favourites");
+            // QMessageBox box;
+            // box.setText("This car is already in your _favourites");
+            // box.setIcon(QMessageBox::Critical);
+            // box.exec();
+        }
+        else
+        {
+            profile->addFavourite(currCar.id);
+            QSqlQuery query(profile->db);
+            if (profile->db.isOpen())
+            {
+                if (query.prepare("INSERT INTO favourites (email, car_id) VALUES (:email, :car_id)"))
+                {
+                    query.bindValue(":email", profile->getEmail());
+                    query.bindValue(":car_id", currCar.id);
+                    if (query.exec())
+                        QMessageBox::information(this, "Success", "Car added to favourites successfully");
+                    else
+                    {
+                        qDebug() << "Query did not execute due to: " << query.lastError().text();
+                        QMessageBox::information(this, "Query did not execute", "Not successful executing the query");
+                    }
+                }
+                else
+                {
+                    qDebug() << "Query not prepared due to the following error: " << query.lastError().text();
+                }
+            }
+            else
+            {
+                qDebug() << "Database not opened due to: " << profile->db.lastError().text();
+                QMessageBox::information(this, "Database not open", "Not opened successfully");
+            }
+        }
+
+        /*pqxx::work cursor(profile->connector);
+        pqxx::result res = cursor.exec_prepared("setFavourite",profile->getEmail().toStdString(),currCar.id);
+        cursor.commit();*/
     }
 }
 

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "profile.h"
 //Please don't delte without telling me!(confier)
 
@@ -27,11 +26,11 @@ void Profile::setPassword(const QString &newPassword)
 
 void Profile::addFavourite(int id)
 {
-    favourites.push_back(id);
+    _favourites.insert(id);
 }
 
 bool Profile::hasFavourite(int id){
-    return favourites.contains(id);
+    return _favourites.contains(id);
 }
 
 QSqlDatabase Profile::connectDB()
@@ -41,7 +40,6 @@ QSqlDatabase Profile::connectDB()
     value.setDatabaseName("sql7711117");
     value.setUserName("sql7711117");
     value.setPassword("B6XhFmVJq8");
-    query = QSqlQuery(db);
     return value;
 }
 // pqxx::connection Profile::connecting(){
@@ -59,5 +57,5 @@ QSqlDatabase Profile::connectDB()
 
 QVector <int> Profile::getFavourites()
 {
-    return favourites;
+    return _favourites.values();
 }

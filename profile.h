@@ -12,7 +12,7 @@ class Profile
 private:
     QString email;
     QString password;
-    QVector <int> favourites;
+    QSet <int> _favourites;
 
 public:
     Profile();
@@ -21,7 +21,6 @@ public:
     QSqlDatabase db = connectDB();
     bool ok = db.open();
     QSqlDatabase connectDB();
-    QSqlQuery query;
     // // Don't touch!
     // pqxx::connection connector = connecting();
     // pqxx::connection connecting();

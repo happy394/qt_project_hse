@@ -29,7 +29,7 @@ private slots:
 
     void on_ModelFilter_textActivated(const QString &arg1);
 
-    void on_pushButton_clicked();
+    void on_ResetButton_clicked();
 
     void on_PriceMin_textEdited(const QString &arg1);
 
@@ -51,9 +51,9 @@ private slots:
 
     void on_tableView_doubleClicked(const QModelIndex &index);
 
-    void on_FavoriteButton_clicked();
+    void on_ProfileButton_clicked();
 
-    void on_checkBox_stateChanged(int arg1);
+    void on_FavouritesBox_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

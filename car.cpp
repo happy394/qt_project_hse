@@ -46,7 +46,7 @@ QString car::getCarInfo() const
            + '\n' + "Fuel:   " + fuel + '\n' + "Transmission type:   " + transmission + '\n'
            + "Drive type:    " + drive + '\n'
            + "Engine capacity:    " + QString::number(engineCapacity) + '\n'
-           + "Horse power:    " + QString::number(engineHp) + '\n' + "Country:    " + country;
+           + "Horse power:    " + QString::number(engineHp) + '\n' + "Country:    " + country + '\n' + QString::number(id);
 }
 
 QStringList car::getCarList() const

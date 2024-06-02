@@ -25,10 +25,8 @@ private slots:
 
 
 private:
-    QSqlQuery query;
     Ui::ProfileWindow *ui;
     std::shared_ptr<Profile> profile;
-    //std::weak_ptr<MainWindow> mainwindow;
     bool logIn(QString email, QString password);
 };
 

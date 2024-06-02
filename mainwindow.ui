@@ -67,7 +67,7 @@
      </widget>
     </item>
     <item row="6" column="6">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="ResetButton">
       <property name="text">
        <string>Reset</string>
       </property>
@@ -118,21 +118,43 @@
      </widget>
     </item>
     <item row="5" column="5">
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="AgeMinLabel">
       <property name="text">
        <string>Min</string>
       </property>
      </widget>
     </item>
     <item row="5" column="6">
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="AgeMaxLabel">
       <property name="text">
        <string>Max</string>
       </property>
      </widget>
     </item>
+    <item row="7" column="0" colspan="10">
+     <widget class="QTableView" name="tableView">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
+    </item>
     <item row="5" column="1">
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="PriceMinLabel">
       <property name="text">
        <string>Min</string>
       </property>
@@ -167,6 +189,13 @@
       </property>
      </widget>
     </item>
+    <item row="6" column="7">
+     <widget class="QCheckBox" name="FavouritesBox">
+      <property name="text">
+       <string>Favourites</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1">
      <widget class="QLabel" name="BrandLabel">
       <property name="text">
@@ -197,14 +226,14 @@
      </widget>
     </item>
     <item row="5" column="3">
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="MileageMinLabel">
       <property name="text">
        <string>Min</string>
       </property>
      </widget>
     </item>
     <item row="5" column="4">
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="MileageMaxLabel">
       <property name="text">
        <string>Max</string>
       </property>
@@ -221,9 +250,9 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QPushButton" name="FavoriteButton">
+         <widget class="QPushButton" name="ProfileButton">
           <property name="text">
-           <string>Fav</string>
+           <string>Profile</string>
           </property>
          </widget>
         </item>
@@ -238,51 +267,11 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1" colspan="7">
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <layout class="QHBoxLayout" name="Search">
-        <item>
-         <widget class="QLineEdit" name="SearchBar"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="SearchButton">
-          <property name="text">
-           <string>Search</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item row="7" column="0" colspan="10">
-     <widget class="QTableView" name="tableView">
-      <property name="selectionMode">
-       <enum>QAbstractItemView::SingleSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="showGrid">
-       <bool>false</bool>
-      </property>
-      <property name="gridStyle">
-       <enum>Qt::SolidLine</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-      <attribute name="verticalHeaderVisible">
-       <bool>false</bool>
-      </attribute>
-     </widget>
-    </item>
     <item row="2" column="3" colspan="2">
      <widget class="QComboBox" name="ModelFilter"/>
     </item>
     <item row="5" column="2">
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="PriceMaxLabel">
       <property name="text">
        <string>Max</string>
       </property>
@@ -328,6 +317,24 @@
       </property>
      </widget>
     </item>
+    <item row="0" column="1" colspan="7">
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QHBoxLayout" name="Search">
+        <item>
+         <widget class="QLineEdit" name="SearchBar"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="SearchButton">
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
     <item row="4" column="4">
      <widget class="QLineEdit" name="MileageMax">
       <property name="sizePolicy">
@@ -347,16 +354,6 @@
       </property>
       <property name="maxLength">
        <number>10</number>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <layout class="QHBoxLayout" name="Offers"/>
-    </item>
-    <item row="5" column="7">
-     <widget class="QCheckBox" name="checkBox">
-      <property name="text">
-       <string>CheckBox</string>
       </property>
      </widget>
     </item>

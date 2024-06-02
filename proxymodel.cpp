@@ -23,12 +23,9 @@ bool ProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent
     QModelIndex indexAge = sourceModel()->index(sourceRow, 11, sourceParent);
     QModelIndex indexId = sourceModel()->index(sourceRow, 12, sourceParent);
 
-    if (favourites)
+    if (_favourites)
     {
-        for (int carId: favouritesVector)
-        {
-            return (sourceModel()->data(indexId).toInt() == carId);
-        }
+        return (_favouritesSet.contains(sourceModel()->data(indexId).toInt()));
     }
     else
     {
@@ -96,11 +93,20 @@ bool ProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent
     }
 }
 
+void ProxyModel::resetFavourites()
+{
+    _favourites = false;
+    _favouritesSet.clear();
+    invalidateFilter();
+}
 void ProxyModel::reset()
 {
     _brand.clear();
     _model.clear();
     _search.clear();
+
+    _favourites = false;
+    _favouritesSet.clear();
 
     _minPrice = 0;
     _maxPrice = 10000000000;
@@ -115,8 +121,11 @@ void ProxyModel::reset()
 
 void ProxyModel::setFlag(bool value1, std::shared_ptr<Profile> &value2)
 {
-    favourites = value1;
-    favouritesVector = value2->getFavourites();
+    _favourites = value1;
+    QSet<int> buff;
+    for (int i: value2->getFavourites())
+        buff.insert(i);
+    _favouritesSet = buff;
     invalidateFilter();
 }
 

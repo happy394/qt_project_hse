@@ -59,7 +59,8 @@ else()
     endif()
 endif()
 
-target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets /opt/homebrew/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib Qt6::Sql)
+target_link_libraries(qt_project_hse PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt6::Sql)
+# /opt/homebrew/Cellar/libpqxx/7.9.0/lib/libpqxx-7.9.dylib
 # target_link_options(qt_project_hse PUBLIC ${LIBPQXX_LDFLAGS})
 # target_link_options(qt_project_hse PUBLIC ${LIBPQ_LDFLAGS})
 

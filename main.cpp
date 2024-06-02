@@ -7,9 +7,9 @@
 
 void initialCheck(QSettings &s)
 {
-    if (!s.contains("id"))
-        s.setValue("id", -1);
-    if (!s.contains("path_amount"))
+    if (!s.contains("id") || s.value("id") == "")
+        s.setValue("id", "-1");
+    if (!s.contains("path_amount") || s.value("path_amount") == "")
         s.setValue("path_amount", 0);
 }
 
@@ -19,6 +19,8 @@ int main(int argc, char *argv[])
     std::mutex mtx;
     std::condition_variable cv;
     QSettings settings("drumdrum");
+    // settings.setValue("id", "-1");
+    qInfo() << settings.value("id");
     // Set the application icon
 
     initialCheck(settings);
