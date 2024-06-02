@@ -28,6 +28,9 @@ void Profile::addFavourite(int id)
 {
     _favourites.insert(id);
 }
+void Profile::removeFavourite(int id){
+    _favourites.remove(id);
+}
 
 bool Profile::hasFavourite(int id){
     return _favourites.contains(id);

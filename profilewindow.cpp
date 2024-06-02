@@ -60,27 +60,10 @@ void ProfileWindow::on_RegistereButton_clicked()
 
 
 
-        // pqxx::work cursor(profile->connector);
-        // pqxx::result res = cursor.exec_prepared("setData",profile->getEmail().toStdString(),profile->getPassword().toStdString());
-        // cursor.commit();
-
-        // if (res.empty()){
-        // {
-        //     box.setText("User already exist");
-        //     box.exec();
-        // }
-        // else{
-        //     ;
-        //     ox.setText("Registred successfully");
-        //     this->close();
-        //     box.exec();
-        // }
     }
     else{
         QMessageBox::critical(this, "Invalid input", "Don't use empty login or password");
-        // box.setText("Don't use empty login or password");
-        // box.setIcon(QMessageBox::Critical);
-        // box.exec();
+
     }
 }
 
@@ -120,21 +103,17 @@ bool ProfileWindow::logIn(QString email, QString password)
 
     return false;
 
-    // pqxx::work cursor(profile->connector);
-    // pqxx::result data = cursor.exec_prepared("getData",profile->getEmail().toStdString(),profile->getPassword().toStdString());
-    // return not(data.empty());
+
 }
 
 
 void ProfileWindow::on_Login_Button_clicked()
 {
     bool suc = logIn(ui->EmailEdit->text(),ui->PasswordEdit->text());
-    // QMessageBox box;
+
     if (suc){
         QMessageBox::information(this, "Logged in", "Logged in successfully");
-        // box.setText("Logged in successfully");
-        // box.setIcon(QMessageBox::Information);
-        // box.exec();
+
         QSqlQuery query(profile->db);
         if (profile->db.isOpen())
         {
@@ -145,10 +124,8 @@ void ProfileWindow::on_Login_Button_clicked()
                 {
                     QSettings settings("drumdrum");
                     settings.setValue("id", profile->getEmail());
-                    qInfo() << settings.value("id");
-                    // pqxx::work cursor(profile->connector);
-                    // pqxx::result _favourites = cursor.exec_prepared("getFavourites",profile->getEmail().toStdString());
-                    // for (const auto &car : _favourites){
+
+
                     while(query.next())
                     {
                         profile->addFavourite(query.value(0).toInt()); // 0 because of only car_id column was executed
@@ -174,9 +151,7 @@ void ProfileWindow::on_Login_Button_clicked()
     }
     else{
         QMessageBox::critical(this, "Wrong input", "Invalid email or password");
-        // box.setText("Invalid email or password");
-        // box.setIcon(QMessageBox::Critical);
-        // box.exec();
+
     }
 }
 

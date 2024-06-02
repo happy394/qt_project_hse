@@ -39,63 +39,6 @@ MainWindow::MainWindow(QWidget *parent)
     profileWindow = std::make_shared<ProfileWindow>(profile);
 
     QSettings settings("drumdrum");
-    if (settings.value("id") != "-1")
-    {
-        QSqlQuery query(profile->db);
-        if (profile->db.isOpen())
-        {
-            if (query.prepare("SELECT email FROM profiles WHERE email = :email"))
-            {
-                query.bindValue(":email", settings.value("id").toString());
-                if (query.exec())
-                {
-                    query.first();
-                    profile->setEmail(query.value(0).toString());
-                }
-                else
-                {
-                    qDebug() << "Query did not execute due to: " << query.lastError().text();
-                    QMessageBox::information(this, "Query did not execute", "Not successful executing the query");
-                }
-            }
-            else
-                qDebug() << "Query not prepared due to the following error: " << query.lastError().text();
-        }
-        else
-        {
-            qDebug() << "Database not opened due to: " << profile->db.lastError().text();
-            QMessageBox::information(this, "Database not open", "Not opened successfully");
-        }
-        QSqlQuery query2(profile->db);
-        if (profile->db.isOpen())
-        {
-            if (query2.prepare("SELECT car_id FROM favourites WHERE email = :email"))
-            {
-                query2.bindValue(":email", profile->getEmail());
-                if (query2.exec())
-                {
-                    while(query2.next())
-                    {
-                        profile->addFavourite(query2.value(0).toInt()); // 0 because of only car_id column was executed
-                    }
-                }
-                else
-                {
-                    qDebug() << "Query did not execute due to: " << query2.lastError().text();
-                    QMessageBox::information(this, "Query did not execute", "Not successful executing the query");
-                }
-            }
-            else
-            {
-                qDebug() << "Query not prepared due to the following error: " << query2.lastError().text();
-            }
-        }
-        else
-        {
-            qDebug() << "Database not opened due to: " << profile->db.lastError().text();
-            QMessageBox::information(this, "Database not open", "Not opened successfully");
-        }
-    }
 
     // Add "Help" menu item
     QMenu *helpMenu = menuBar()->addMenu(tr("Help"));
@@ -114,12 +57,11 @@ MainWindow::~MainWindow()
 {
     QSettings settings("drumdrum");
     settings.setValue("id", "-1");
-    qInfo() << settings.value("id");
     delete ui;
     delete offerModel;
     delete brandModel;
     delete modelModel;
-    delete sortModel;
+    //delete sortModel;
     delete proxyModel;
 }
 

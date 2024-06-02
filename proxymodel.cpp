@@ -182,3 +182,4 @@ void ProxyModel::setMaxAge(const int &value)
     _maxAge = value;
     invalidateFilter();
 }
+

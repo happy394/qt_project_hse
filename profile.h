@@ -31,6 +31,7 @@ public:
     QString getPassword() const;
     void setPassword(const QString &newPassword);
     void addFavourite (int id);
+    void removeFavourite(int id);
     bool hasFavourite (int id);
     QVector <int> getFavourites();
 

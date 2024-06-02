@@ -4,6 +4,7 @@
 #include "profile.h"
 #include <QDialog>
 
+
 //Please don't delte without telling me!(confier)
 
 namespace Ui {
@@ -28,6 +29,7 @@ private:
     Ui::ProfileWindow *ui;
     std::shared_ptr<Profile> profile;
     bool logIn(QString email, QString password);
+
 };
 
 #endif // PROFILEWINDOW_H

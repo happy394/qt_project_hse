@@ -4,7 +4,10 @@
 #include <QStringListModel>
 #include <QWidget>
 #include "car.h"
+
 #include "profile.h"
+
+
 
 namespace Ui {
 class OfferWindow;
@@ -22,12 +25,15 @@ private slots:
     void on_FavoriteButton_clicked();
 
 
+    void on_pushButton_clicked();
+
 private:
     std::shared_ptr<Profile> profile;
     Ui::OfferWindow *ui;
     QStringListModel *carInfoModel;
     QStringListModel *carName;
     car currCar;
+
 };
 
 #endif // OFFERWINDOW_H

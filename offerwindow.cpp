@@ -2,6 +2,8 @@
 #include "ui_offerwindow.h"
 #include <QMessageBox>
 #include <QSqlError>
+#include "mainwindow.h"
+
 
 
 OfferWindow::OfferWindow(std::shared_ptr<Profile> profile, car currCar, QWidget *parent)
@@ -77,6 +79,54 @@ void OfferWindow::on_FavoriteButton_clicked()
         /*pqxx::work cursor(profile->connector);
         pqxx::result res = cursor.exec_prepared("setFavourite",profile->getEmail().toStdString(),currCar.id);
         cursor.commit();*/
+    }
+}
+
+//definetly not copied from happy
+void OfferWindow::on_pushButton_clicked()
+{
+    if (profile->getEmail() == ""){
+        QMessageBox::critical(this, "Not logged in", "Please log in into account");
+
+    }
+    else {
+        if (not(profile->getFavourites().contains(currCar.id)))
+        {
+            QMessageBox::critical(this, "Duplicate data", "This car is not in your favourites");
+
+        }
+        else
+        {
+            profile->removeFavourite(currCar.id);
+            QSqlQuery query(profile->db);
+            if (profile->db.isOpen())
+            {
+                if (query.prepare("DELETE FROM favourites WHERE email = :email AND car_id = :car_id "))
+                    //SELECT car_id FROM favourites WHERE email = :email"
+                {
+                    query.bindValue(":email", profile->getEmail());
+                    query.bindValue(":car_id", currCar.id);
+
+                    if (query.exec()){
+                        QMessageBox::information(this, "Success", "Car removed from favourites successfully");
+                    }
+                    else
+                    {
+                        qDebug() << "Query did not execute due to: " << query.lastError().text();
+                        QMessageBox::information(this, "Query did not execute", "Not successful executing the query");
+                    }
+                }
+                else
+                {
+                    qDebug() << "Query not prepared due to the following error: " << query.lastError().text();
+                }
+            }
+            else
+            {
+                qDebug() << "Database not opened due to: " << profile->db.lastError().text();
+                QMessageBox::information(this, "Database not open", "Not opened successfully");
+            }
+        }
     }
 }
 

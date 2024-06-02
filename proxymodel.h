@@ -25,8 +25,10 @@ public:
     void setMinAge(const int &value);
     void setMaxAge(const int &value);
 
+
     void reset();
     void resetFavourites();
+
 
 protected:
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
